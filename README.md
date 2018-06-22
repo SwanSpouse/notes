@@ -1,10 +1,7 @@
-胖美丽守护神:
-
-* 这个gitbook将记录下我学习过程中所遇到的一些问题和整理的笔记。
-
-#### 目录
+目录
 
 * [golang](/golang.md)
+  * [数据初始化 new&make](/golang/new-object.md)
 
 
 
