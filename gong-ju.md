@@ -17,7 +17,6 @@
 	* http://webchart.ihuhai.cn/
 	* 把svg图片转成png图片相对好用的一个http://svgtopng.com/zh/
 
-
 ### 修改控件的工具
 	* betterTouchTool
 
