@@ -13,12 +13,6 @@
 ### sublime
     * 其中的各种package
 
-### API管理工具其他工具:
-	* 使用eolinker来进行API文档的管理和测试。https://www.eolinker.com/#/home/project/api/ 
-	* 推荐 YApi可视化接口管理系统 https://yapi.ymfe.org/  体验一下这个东西。
-	* 阿里巴巴使用的 http://rapapi.org/org/index.do 这个来进行api管理。
-	* 我的那个项目可以参考这个项目来进行
-
 ### 画时序图的小工具:
 	* http://webchart.ihuhai.cn/
 	* 把svg图片转成png图片相对好用的一个http://svgtopng.com/zh/
