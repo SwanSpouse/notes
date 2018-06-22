@@ -8,12 +8,13 @@
   * [垃圾回收算法](java/java-xu-ni-ji/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lve.md)
   * [hotspot](java/java-xu-ni-ji/hotspot.md)
   * [垃圾收集器](java/java-xu-ni-ji/la-ji-shou-ji-qi.md)
-* [go](go.md)
-* [数据初始化 new&make](golang/new-object.md)
-* 数据库
+* [数据库](shu-ju-ku.md)
 * [mysql](mysql.md)
   * [innoDB锁](mysql/innodbsuo.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
+* [go](go.md)
+  * [数据初始化 new & make](go/shu-ju-chu-shi-hua-new-and-make.md)
+* [数据初始化 new&make](golang/new-object.md)
 
 ## asdf
 
