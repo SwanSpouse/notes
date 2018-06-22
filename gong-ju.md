@@ -9,7 +9,7 @@
 ### iterm2
     * 其中的各种插件。
 
-### sublime
+### sublime atom
     * 其中的各种package
 
 ### 画时序图的小工具:
