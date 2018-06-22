@@ -1,3 +1,33 @@
 {
-    "plugins": [ "theme-faq" ]
+    "title": "notes",
+    "author": "mingjili",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "root": ".",
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "theme-faq",
+        "-lunr",
+        "-search",
+        "highlight",
+        "livereload",
+        "theme-default",
+        "fontsettings",
+        "-sharing",
+        "tbfed-pagefooter",
+	      "search-plus",
+        "alerts",
+        "splitter",
+        "expandable-chapters-small"
+    ],
+
+    "pluginsConfig": {
+        "tbfed-pagefooter": {
+            "copyright":"Copyright zhiwang-team",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        }
+    }
 }
