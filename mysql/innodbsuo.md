@@ -3,7 +3,7 @@
 乐观锁: 指数据对被外界修改保持乐观态度。乐观锁不是数据库自带的，需要自己来进行实现。一般采用version记录机制。
 
 ```sql
-    update task set value = new_value, version = 3 where version = 2;
+update task set value = new_value, version = 3 where version = 2;
 ```
 
 同一时刻多个客户端进行更新的时候只有一个会更新成功。因为where条件只有一个能够符合。
