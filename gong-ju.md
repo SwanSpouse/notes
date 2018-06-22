@@ -7,7 +7,7 @@
 	    * http://blog.jobbole.com/94472/
 
 ### iterm2
-* 其中的各种插件。
+其中的各种插件。
 
 ### sublime atom
     * 其中的各种package非常好用
