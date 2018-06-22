@@ -8,7 +8,7 @@
   * [垃圾回收算法](java/java-xu-ni-ji/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lve.md)
   * [hotspot](java/java-xu-ni-ji/hotspot.md)
   * [垃圾收集器](java/java-xu-ni-ji/la-ji-shou-ji-qi.md)
-* [go](go.md)
+* [golang](go.md)
 * [数据初始化 new & make](go/shu-ju-chu-shi-hua-new-and-make.md)
 * [mysql](mysql.md)
   * [innoDB锁](mysql/innodbsuo.md)
