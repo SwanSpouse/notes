@@ -21,8 +21,8 @@
 * 排他锁【X锁】: 又称写锁。若事务T对数据对象A加上X锁，事务T可以读A也可以修改A，其他事务不能再对A加任何锁，直到T释放A上的锁。这保证了其他事务在T释放A上的锁之前不能再读取和修改A。
 
 ```sql
-       // 会对符合where语句中条件的条目进行加锁。
-       select * from account where name = "Max" for update;
+// 会对符合where语句中条件的条目进行加锁。
+select * from account where name = "Max" for update;
 ```
 
 mysql InnoDB引擎默认的修改数据语句，update,delete,insert都会自动给涉及到的数据加上排他锁，select语句默认不会加任何锁类型。
@@ -46,8 +46,7 @@ mysql InnoDB引擎默认的修改数据语句，update,delete,insert都会自动
 select math from zje where math>60 for update;  
 
 事务B再执行：  
-select math from zje where math<60 for update；  
-
+select math from zje where math<60 for update；
 ```
 
 这样的话，事务B是会阻塞的。如果事务B把 math索引换成其他索引就不会阻塞，但注意，换成其他索引锁住的行不能和math索引锁住的行有重复。
