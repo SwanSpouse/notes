@@ -17,5 +17,5 @@
 * [mysql](mysql.md)
   * [innoDB锁](mysql/innodbsuo.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
-* [plan](plan.md)
+* [学习计划](plan.md)
 
