@@ -6,7 +6,6 @@
 	    * http://blog.csdn.net/cclethe/article/details/78745598 这个教程比较详细
 	    * http://blog.jobbole.com/94472/
 
-
 ### iterm2
     * 其中的各种插件。
 
