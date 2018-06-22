@@ -22,6 +22,7 @@
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
   * [数据库索引](mysql/shu-ju-ku-suo-yin.md)
   * [sql 执行顺序](mysql/sql-zhi-xing-shun-xu.md)
+  * [数据库事务](mysql/shu-ju-ku-shi-wu.md)
 * [Redis](redis.md)
   * [redis rdb](redis/redis-rdb.md)
   * [sentinel](redis/sentinel.md)
