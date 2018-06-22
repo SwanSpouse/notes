@@ -3,6 +3,9 @@
 * [Introduction](README.md)
 * 算法
   * [HashCode](hash-code.md)
+* [Linux](linux.md)
+  * [Linux I/O模型](linux/linux-iomo-xing.md)
+  * [I/O模型改进版](linux/iomo-xing-gai-jin-ban.md)
 * [golang](go.md)
   * [golang-scheduler](golang/golang-scheduler.md)
     * [golang调度器](golang/golang-scheduler/golang-scheduler.md)
