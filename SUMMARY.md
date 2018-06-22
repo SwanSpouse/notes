@@ -18,6 +18,8 @@
 * [mysql](mysql.md)
   * [innoDB锁](mysql/innodbsuo.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
+* [Redis](redis.md)
+  * [redis rdb](redis/redis-rdb.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [分布式系统](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
