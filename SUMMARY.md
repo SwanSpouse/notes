@@ -1,6 +1,8 @@
 # Summary
 
 * [Introduction](README.md)
+* 算法
+  * [HashCode](hash-code.md)
 * [golang](go.md)
   * [golang-scheduler](golang/golang-scheduler.md)
     * [golang调度器](golang/golang-scheduler/golang-scheduler.md)
