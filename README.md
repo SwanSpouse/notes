@@ -1,1 +1,8 @@
-This file serves as an introduction to your Knowledge Base, it is displayed on the homepage of your website. Use it to provide more context to your visitors.
+
+
+胖美丽守护神: 
+
+* 这个gitbook将记录下我学习过程中所遇到的一些问题和整理的笔记。
+
+
+
