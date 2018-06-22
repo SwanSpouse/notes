@@ -3,7 +3,7 @@
 乐观锁: 指数据对被外界修改保持乐观态度。乐观锁不是数据库自带的，需要自己来进行实现。一般采用version记录机制。
 
 ```sql
-    update task set value = new_value, version = 3 where version = 2; 
+    update task set value = new_value, version = 3 where version = 2;
 ```
 
 同一时刻多个客户端进行更新的时候只有一个会更新成功。因为where条件只有一个能够符合。
@@ -47,8 +47,10 @@ select math from zje where math>60 for update;
 
 事务B再执行：  
 select math from zje where math<60 for update；  
-这样的话，事务B是会阻塞的。如果事务B把 math索引换成其他索引就不会阻塞，但注意，换成其他索引锁住的行不能和math索引锁住的行有重复。
+
 ```
+
+这样的话，事务B是会阻塞的。如果事务B把 math索引换成其他索引就不会阻塞，但注意，换成其他索引锁住的行不能和math索引锁住的行有重复。
 
 #### mysql innoDB锁
 
