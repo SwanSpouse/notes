@@ -10,7 +10,7 @@
     * 其中的各种插件。
 
 ### sublime atom
-    * 其中的各种package
+    * 其中的各种package非常好用
 
 ### 画时序图的小工具:
 	* http://webchart.ihuhai.cn/
