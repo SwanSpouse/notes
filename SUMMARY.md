@@ -22,6 +22,7 @@
   * [redis rdb](redis/redis-rdb.md)
   * [sentinel](redis/sentinel.md)
   * [redis transaction](redis/redis-transaction.md)
+  * [redis 各个版本更新日志](redis/redis-ge-ge-ban-ben-geng-xin-ri-zhi.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [分布式系统](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
