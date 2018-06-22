@@ -15,7 +15,7 @@
 * ps 加上共享锁之后自己都不能对数据进行修改了吗？
 
 ```sql
-    select * from account where name = "Max" lock in share mode
+select * from account where name = "Max" lock in share mode
 ```
 
 * 排他锁【X锁】: 又称写锁。若事务T对数据对象A加上X锁，事务T可以读A也可以修改A，其他事务不能再对A加任何锁，直到T释放A上的锁。这保证了其他事务在T释放A上的锁之前不能再读取和修改A。
