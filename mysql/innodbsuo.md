@@ -1,12 +1,12 @@
-
-
 #### mysql 乐观锁、悲观锁
 
 乐观锁: 指数据对被外界修改保持乐观态度。乐观锁不是数据库自带的，需要自己来进行实现。一般采用version记录机制。
 
 ```sql
-	update task set value = new_value, version = 3 where version = 2; 同一时刻多个客户端进行更新的时候只有一个会更新成功。因为where条件只有一个能够符合。
+    update task set value = new_value, version = 3 where version = 2; 
 ```
+
+同一时刻多个客户端进行更新的时候只有一个会更新成功。因为where条件只有一个能够符合。
 
 悲观锁: 指数据对被外界修改保持悲观态度。一般采用数据库的锁机制。
 
@@ -15,13 +15,14 @@
 * ps 加上共享锁之后自己都不能对数据进行修改了吗？
 
 ```sql
-	select * from account where name = "Max" lock in share mode
+    select * from account where name = "Max" lock in share mode
 ```
 
 * 排他锁【X锁】: 又称写锁。若事务T对数据对象A加上X锁，事务T可以读A也可以修改A，其他事务不能再对A加任何锁，直到T释放A上的锁。这保证了其他事务在T释放A上的锁之前不能再读取和修改A。
 
 ```sql
-	select * from account where name = "Max" for update; 会对符合where语句中条件的条目进行加锁。
+       // 会对符合where语句中条件的条目进行加锁。
+       select * from account where name = "Max" for update;
 ```
 
 mysql InnoDB引擎默认的修改数据语句，update,delete,insert都会自动给涉及到的数据加上排他锁，select语句默认不会加任何锁类型。
@@ -49,7 +50,6 @@ select math from zje where math<60 for update；
 这样的话，事务B是会阻塞的。如果事务B把 math索引换成其他索引就不会阻塞，但注意，换成其他索引锁住的行不能和math索引锁住的行有重复。
 ```
 
-
 #### mysql innoDB锁
 
 InnoDB与MyISAM的最大不同有两点：
@@ -76,7 +76,10 @@ InnoDB与MyISAM的最大不同有两点：
 
 * 幻读（phantom read）：A事务读取了B事务已经提交的新增数据。注意和不可重复读的区别，这里是新增，不可重复读是更改（或删除）。这两种情况对策是不一样的，对于不可重复读，只需要采取行级锁防止该记录数据被更改或删除，然而对于幻读必须加表级锁，防止在这个表中新增一条数据。
 
-
 #### 参考文档
-* http://blog.csdn.net/mysteryhaohao/article/details/51669741
-* http://blog.csdn.net/yuwei19840916/article/details/3245107
+
+* [http://blog.csdn.net/mysteryhaohao/article/details/51669741](http://blog.csdn.net/mysteryhaohao/article/details/51669741)
+* [http://blog.csdn.net/yuwei19840916/article/details/3245107](http://blog.csdn.net/yuwei19840916/article/details/3245107)
+
+
+
