@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
   * [mysql](mysql.md)
-    * innoDB锁
+    * [innoDB锁](mysql/innodbsuo.md)
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)
     * [jvm 内存区域](java/java-xu-ni-ji/java-jvm.md)
