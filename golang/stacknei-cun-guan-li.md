@@ -15,7 +15,7 @@ stack cache pool的主要思想是按照固定大小划分成多级：每级别�
 ![](/assets/import.png)这里的分配算法思想是:
 
 1. 如果线程m的local stack cache为空，则直接从全局的stack cache pool中分配；
-2. 否则先从线程的local stack cache中分配，如果无法分配除，则需要先给线程分配出一批stack，赋给该线程，再从线程local stack cache中再分配。
+2. 否则先从线程的local stack cache中分配，如果无法分配，则需要先给线程分配出一批stack，赋给该线程，再从线程local stack cache中再分配。
 
 分配后的系统stack cache pool结构如下：
 
