@@ -32,11 +32,9 @@ public class Singleton {
 
 ● 需要定义大量的静态常量和静态方法（如工具类）的环境，可以采用单例模式（当然，也可以直接声明为static的方式）。
 
-
-
 #### 参考
 
-* https://www.cnblogs.com/tongkey/p/7170826.html
+* [https://www.cnblogs.com/tongkey/p/7170826.html](https://www.cnblogs.com/tongkey/p/7170826.html)
 
 
 

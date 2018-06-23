@@ -40,3 +40,9 @@ public <T extends Product> T createProduct(Class<T> c){
 
 使用场景：jdbc连接数据库，硬件访问，降低对象的产生和销毁。
 
+#### 参考
+
+* [https://www.cnblogs.com/tongkey/p/7170826.html](https://www.cnblogs.com/tongkey/p/7170826.html)
+
+
+
