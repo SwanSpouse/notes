@@ -6,3 +6,15 @@ Define the skeleton of an algorithm in an operation,deferring some steps to subc
 
 
 
+AbstractClass叫做 **抽象模板**，它的方法分为两类：
+
+● 基本方法
+
+基本方法也叫做基本操作，是由子类实现的方法，并且在模板方法被调用。
+
+● 模板方法
+
+可以有一个或几个，一般是一个具体方法，也就是一个框架，实现对基本方法的调度，完成固定的逻辑。
+
+注意：　为了防止恶意的操作，一般模板方法都加上final关键字，不允许被覆写。
+
