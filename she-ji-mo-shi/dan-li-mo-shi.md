@@ -36,5 +36,7 @@ public class Singleton {
 
 * [https://www.cnblogs.com/tongkey/p/7170826.html](https://www.cnblogs.com/tongkey/p/7170826.html)
 
+* http://www.runoob.com/design-pattern/singleton-pattern.html
+
 
 
