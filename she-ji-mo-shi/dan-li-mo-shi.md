@@ -4,6 +4,24 @@
 
 Ensure a class has only one instance, and provide a global point of access to it.（确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。）
 
+```java
+public class Singleton {
+     private static final Singleton singleton = new Singleton();
+//限制产生多个对象
+     private Singleton(){
+     }
+     //通过该方法获得实例对象
+     public static Singleton getSingleton(){
+             return singleton;
+     }  
+     //类中其他方法，尽量是static
+     public static void doSomething(){
+     }
+}
+```
+
+
+
 #### 使用场景：
 
 ● 要求生成唯一序列号的环境；
@@ -13,6 +31,4 @@ Ensure a class has only one instance, and provide a global point of access to it
 ● 创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源；
 
 ● 需要定义大量的静态常量和静态方法（如工具类）的环境，可以采用单例模式（当然，也可以直接声明为static的方式）。
-
-
 
