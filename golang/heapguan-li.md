@@ -10,6 +10,19 @@ Go内存池管理的核心数据结构为mHeap。该结构管理从os申请的�
 
 程序在向go runtime申请分配某种object所需内存时，会计算出object占用的内存空间，然后找到最接近的mspan\(因为mspan管理的块大小是按照固定倍数增长的方案。如一个17字节的object需要的块大小应该是24字节，存在轻微的内存浪费\)，将其分配出去。
 
+### 核心数据结构
+
+Go内存管理模块的核心数据结构比较少:
+
+* **mheap**
+  ：管理全局的从os申请的虚拟内存空间；
+* **mspan**
+  ：将mheap按照固定大小切分而成的细粒度的内存区块，每个区块映射了虚拟内存中的若干连续页面，页大小由Go内部定义；
+* **mcache**
+  ：与线程相关缓存，该结构的存在是为了减少内存分配时的锁操作，优化内存分配性能。
+* **mcentral**
+  ：集中内存池，线程在本地分配失败后，尝试向mcentral申请，如果mcentral也没有资源，则尝试向mheap分配。
+
 ### 参考
 
 * [https://tracymacding.gitbooks.io/implementation-of-golang/content/](https://tracymacding.gitbooks.io/implementation-of-golang/content/)
