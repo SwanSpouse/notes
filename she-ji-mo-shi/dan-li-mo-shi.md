@@ -7,10 +7,9 @@ Ensure a class has only one instance, and provide a global point of access to it
 #### 通用代码：（是线程安全的）
 
 ```java
-
 public class Singleton {
      private static final Singleton singleton = new Singleton();
-//限制产生多个对象
+     //限制产生多个对象
      private Singleton(){
      }
      //通过该方法获得实例对象
@@ -36,7 +35,6 @@ public class Singleton {
 #### 线程不安全的
 
 ```java
-
 public class Singleton {
      private static Singleton singleton = null; 
      //限制产生多个对象
