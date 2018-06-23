@@ -19,6 +19,10 @@
 	      "search-plus",
         "alerts",
         "splitter",
+        "github",
+        "sharing-plus",
+        "edit-link",
+        "disqus",
         "expandable-chapters-small"
     ],
 
@@ -26,6 +30,38 @@
         "tbfed-pagefooter": {
             "modify_label": "该文件修订时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "github": {
+            "url": "https://github.com/SwanSpouse/notes"
+        },
+        "edit-link": {
+                "base": "https://github.com/SwanSpouse/notes/edit/master/path/to/book",
+                "label": "Edit This Page"
+        },
+        "disqus": {
+           "shortName": "swanspouse.disqus.com"
+       },
+        "sharing": {
+            "douban": false,
+            "facebook": false,
+            "google": true,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": true,
+            "messenger": false,
+            "pocket": false,
+            "qq": false,
+            "qzone": false,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false,
+            "all": [
+                "facebook", "google", "twitter", "weibo"
+            ]
         }
     }
 }
