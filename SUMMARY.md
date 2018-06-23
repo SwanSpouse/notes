@@ -46,6 +46,7 @@
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
+  * [抽象工厂模式](she-ji-mo-shi/chou-xiang-gong-chang-mo-shi.md)
 * [学习计划](plan.md)
 * [工具](gong-ju.md)
 
