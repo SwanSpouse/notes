@@ -1,9 +1,6 @@
-
-
 ### Golang Gc
 
-
-#### 三色标记算法 (Tri-color marking)
+#### 三色标记算法 \(Tri-color marking\)
 
 三色标记法是传统 Mark-Sweep 的一个改进，它是一个并发的 GC 算法。
 
@@ -69,7 +66,10 @@ go 除了标准的三色收集以外，还有一个辅助回收功能，防止�
 
 #### reference
 
-* https://lengzzz.com/note/gc-in-golang
-* https://studygolang.com/articles/7366
-* https://my.oschina.net/lubia/blog/175154
-* http://newhtml.net/v8-garbage-collection/
+* [https://lengzzz.com/note/gc-in-golang](https://lengzzz.com/note/gc-in-golang)
+* [https://studygolang.com/articles/7366](https://studygolang.com/articles/7366)
+* [https://my.oschina.net/lubia/blog/175154](https://my.oschina.net/lubia/blog/175154)
+* [http://newhtml.net/v8-garbage-collection/](http://newhtml.net/v8-garbage-collection/)
+
+
+
