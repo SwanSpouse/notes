@@ -32,23 +32,7 @@ public class Singleton {
 
 ● 需要定义大量的静态常量和静态方法（如工具类）的环境，可以采用单例模式（当然，也可以直接声明为static的方式）。
 
-#### 线程不安全的
 
-```java
-public class Singleton {
-     private static Singleton singleton = null; 
-     //限制产生多个对象
-     private Singleton(){
-     }
-     //通过该方法获得实例对象
-     public static Singleton getSingleton(){
-             if(singleton == null){
-                    singleton = new Singleton();
-             }
-             return singleton;
-     }
-}
-```
 
 
 
