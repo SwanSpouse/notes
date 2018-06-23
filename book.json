@@ -35,7 +35,7 @@
             "url": "https://github.com/SwanSpouse/notes"
         },
         "edit-link": {
-                "base": "https://github.com/SwanSpouse/notes/edit/master/path/to/book",
+                "base": "https://github.com/SwanSpouse/notes/edit/master/",
                 "label": "Edit This Page"
         },
         "disqus": {
