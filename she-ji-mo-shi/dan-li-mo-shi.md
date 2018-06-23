@@ -20,8 +20,6 @@ public class Singleton {
 }
 ```
 
-
-
 #### 使用场景：
 
 ● 要求生成唯一序列号的环境；
