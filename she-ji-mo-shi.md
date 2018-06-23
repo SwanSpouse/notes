@@ -41,3 +41,9 @@
 
 
 
+#### 参考
+
+* http://www.runoob.com/design-pattern/design-pattern-intro.html
+
+
+
