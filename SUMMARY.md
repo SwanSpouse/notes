@@ -14,6 +14,7 @@
     * [gorountine](golang/golang-scheduler/gorountine.md)
   * [内存管理](golang/nei-cun-guan-li.md)
     * [Stack内存管理](golang/stacknei-cun-guan-li.md)
+    * [Heap管理](golang/heapguan-li.md)
     * [golang-gc](golang/golang-gc.md)
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)

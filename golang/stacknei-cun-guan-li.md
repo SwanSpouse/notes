@@ -23,12 +23,7 @@ stack cache pool的主要思想是按照固定大小划分成多级：每级别�
 
 ### 参考
 
-* https://tracymacding.gitbooks.io/implementation-of-golang/content/
+* [https://tracymacding.gitbooks.io/implementation-of-golang/content/](https://tracymacding.gitbooks.io/implementation-of-golang/content/)
 
-
-
-
-
-  
 
 
