@@ -45,6 +45,7 @@
   * [No sql理论基础](fen-bu-shi-xi-tong/no-sqlli-lun-ji-chu.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+  * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
 * [学习计划](plan.md)
 * [工具](gong-ju.md)
 
