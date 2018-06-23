@@ -35,6 +35,7 @@ public class Singleton {
 #### 通用代码：（是线程安全的）
 
 ```java
+
 public class Singleton {
      private static Singleton singleton = null; 
      //限制产生多个对象
