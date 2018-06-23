@@ -15,6 +15,7 @@
   * [内存管理](golang/nei-cun-guan-li.md)
     * [Stack内存管理](golang/stacknei-cun-guan-li.md)
     * [Heap管理](golang/heapguan-li.md)
+    * [内存分配算法](golang/nei-cun-fen-pei-suan-fa.md)
     * [golang-gc](golang/golang-gc.md)
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)
