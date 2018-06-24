@@ -24,7 +24,7 @@
 
 如果公钥加密的信息只有私钥解得开，那么只要私钥不泄漏，通信就是安全的。
 
-#### 公钥私钥
+##### 公钥私钥
 
 公钥（Public Key）与[私钥](https://baike.baidu.com/item/私钥)（Private Key）是通过一种算法得到的一个[密钥](https://baike.baidu.com/item/密钥)对（即一个公钥和一个私钥），公钥是密钥对中公开的部分，私钥则是非公开的部分。公钥通常用于加密会话[密钥](https://baike.baidu.com/item/密钥)、验证[数字签名](https://baike.baidu.com/item/数字签名)，或加密可以用相应的[私钥](https://baike.baidu.com/item/私钥)解密的数据。通过这种算法得到的[密钥](https://baike.baidu.com/item/密钥)对能保证在世界范围内是唯一的。使用这个[密钥](https://baike.baidu.com/item/密钥)对的时候，如果用其中一个[密钥加密](https://baike.baidu.com/item/密钥加密)一段数据，必须用另一个密钥解密。比如用[公钥加密](https://baike.baidu.com/item/公钥加密)数据就必须用[私钥](https://baike.baidu.com/item/私钥)解密，如果用私钥加密也必须用公钥解密，否则解密将不会成功。
 
@@ -32,7 +32,7 @@
 
 * [https://baike.baidu.com/item/公钥/6447788?fr=aladdin](https://baike.baidu.com/item/公钥/6447788?fr=aladdin)
 
-* http://www.ruanyifeng.com/blog/2013/06/rsa\_algorithm\_part\_one.html
+* [http://www.ruanyifeng.com/blog/2013/06/rsa\_algorithm\_part\_one.html](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
 
 
 

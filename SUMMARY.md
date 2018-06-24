@@ -49,6 +49,7 @@
   * [抽象工厂模式](she-ji-mo-shi/chou-xiang-gong-chang-mo-shi.md)
 * [区块链](qu-kuai-lian.md)
   * [公钥私钥](qu-kuai-lian/gong-yao-si-yao.md)
+  * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
 * [学习计划](plan.md)
 * [工具](gong-ju.md)
