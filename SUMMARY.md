@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* 算法
+* [算法](suan-fa.md)
   * [HashCode](hash-code.md)
 * [Linux](linux.md)
   * [Linux I/O模型](linux/linux-iomo-xing.md)
@@ -48,6 +48,7 @@
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
   * [抽象工厂模式](she-ji-mo-shi/chou-xiang-gong-chang-mo-shi.md)
 * [区块链](qu-kuai-lian.md)
+  * [公钥私钥](qu-kuai-lian/gong-yao-si-yao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
 * [学习计划](plan.md)
 * [工具](gong-ju.md)
