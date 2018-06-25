@@ -13,6 +13,7 @@
     * [The Go scheduler Morsing's Blog](golang/golang-scheduler/blog.md)
     * [gorountine](golang/golang-scheduler/gorountine.md)
   * [内存管理](golang/nei-cun-guan-li.md)
+    * [逃逸分析](golang/tao-yi-fen-xi.md)
     * [Stack内存管理](golang/stacknei-cun-guan-li.md)
     * [Heap管理](golang/heapguan-li.md)
     * [内存分配算法](golang/nei-cun-fen-pei-suan-fa.md)
