@@ -43,6 +43,7 @@
   * [sso](xiang-mu-ji-cheng/sso.md)
   * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
   * [Gitlab](xiang-mu-ji-cheng/gitlab.md)
+  * [Kibana](xiang-mu-ji-cheng/kibana.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [分布式系统](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
