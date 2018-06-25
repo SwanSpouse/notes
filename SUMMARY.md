@@ -39,6 +39,8 @@
   * [redis 复制](redis/redis-fu-zhi.md)
   * [redis 集群](redis/redis-ji-qun.md)
   * [一次完整的客户端与服务器连接事件示例](redis/yi-ci-wan-zheng-de-ke-hu-duan-yu-fu-wu-qi-lian-jie-shi-jian-shi-li.md)
+* [项目集成](xiang-mu-ji-cheng.md)
+  * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [分布式系统](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
@@ -53,5 +55,5 @@
   * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
 * [学习计划](plan.md)
-* [工具](gong-ju.md)
+* 项目集成
 
