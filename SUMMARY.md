@@ -1,8 +1,9 @@
 # Summary
 
 * [Introduction](README.md)
-* [算法](suan-fa.md)
+* [算法&计算机基础](suan-fa.md)
   * [HashCode](hash-code.md)
+  * [字符编码ASCII & Unicode &UTF-8](zi-fu-bian-ma-ascii-andunicode-and-utf-8.md)
 * [Linux](linux.md)
   * [Linux I/O模型](linux/linux-iomo-xing.md)
   * [I/O模型改进版](linux/iomo-xing-gai-jin-ban.md)
