@@ -40,6 +40,7 @@
   * [redis 集群](redis/redis-ji-qun.md)
   * [一次完整的客户端与服务器连接事件示例](redis/yi-ci-wan-zheng-de-ke-hu-duan-yu-fu-wu-qi-lian-jie-shi-jian-shi-li.md)
 * [项目集成](xiang-mu-ji-cheng.md)
+  * [sso](xiang-mu-ji-cheng/sso.md)
   * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [分布式系统](fen-bu-shi-xi-tong.md)
