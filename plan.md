@@ -28,6 +28,8 @@
     * Go线程模型。资源调度。
     * golang和Java之间的对比。
     * 语法树、从语言的设计层面来考虑考虑问题。
+    * 逃逸分析
+    * channel gorountine
   * 4.2 Java
     * Java虚拟机
     * Java类加载机制。这部分也算是Java虚拟机里面的。
