@@ -26,6 +26,7 @@
     * [垃圾回收算法](java/java-xu-ni-ji/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lve.md)
     * [hotspot](java/java-xu-ni-ji/hotspot.md)
     * [垃圾收集器](java/java-xu-ni-ji/la-ji-shou-ji-qi.md)
+    * [类的加载](java/java-xu-ni-ji/lei-de-jia-zai.md)
 * [mysql](mysql.md)
   * [innoDB锁](mysql/innodbsuo.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
@@ -58,6 +59,8 @@
   * [公钥私钥](qu-kuai-lian/gong-yao-si-yao.md)
   * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
+* [业务逻辑梳理](ye-wu-luo-ji-shu-li.md)
+  * [hjs](hjs.md)
 * [学习计划](plan.md)
 * 项目集成
 
