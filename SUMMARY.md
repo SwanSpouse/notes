@@ -8,6 +8,7 @@
   * [Linux I/O模型](linux/linux-iomo-xing.md)
   * [I/O模型改进版](linux/iomo-xing-gai-jin-ban.md)
 * [golang](go.md)
+  * [golang生产者消费者模型](golang/golangsheng-chan-zhe-xiao-fei-zhe-mo-xing.md)
   * [数据初始化 new & make](golang/new-object.md)
   * [golang-scheduler](golang/golang-scheduler.md)
     * [golang调度器](golang/golang-scheduler/golang-scheduler.md)
