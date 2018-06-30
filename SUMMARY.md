@@ -15,7 +15,7 @@
   * [golang 同步](golang/golang-tong-bu.md)
   * [golang-scheduler](golang/golang-scheduler.md)
     * [golang调度器](golang/golang-scheduler/golang-scheduler.md)
-    * [The Go scheduler Morsing's Blog](golang/golang-scheduler/blog.md)
+    * [The Go scheduler](golang/golang-scheduler/blog.md)
   * [内存管理](golang/nei-cun-guan-li.md)
     * [逃逸分析](golang/tao-yi-fen-xi.md)
     * [Stack内存管理](golang/stacknei-cun-guan-li.md)
