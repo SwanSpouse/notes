@@ -1,73 +1,93 @@
-### Producer consumer pattern
+### Golang 并发处理demo
+
+下面代码中需要说明的几个点：
+
+* Start, Close, AddTask 是不可以并发调用的。
+* 通过SafeGo捕获所有可能的panic。其实在发生panic的时候可以调用os.Exit\(1\)。否则如果存在异常数据的时候，虽然启动了10个Gorountine，但是可能有9个因为panic停掉了，最后就变成单线程的了。通过调用os.Exit\(1\)可以停掉整个进程，去解决逻辑中的问题，然后再重新运行嘛。
+* 假定Worker的数量是10，在启动的时候，会启动10个worker，所有的worker都尝试从Tasks的channel中获取要执行的任务。在没有调用addTask之前，所有的worker都阻塞在从task channel中获取task。直到调用了addTask。
+* 当调用了Close之后，task channel被关闭。程序等待所有的worker消费完task channel中所有的task，程序结束。
 
 ```golang
-/*
-These next two lines create two new channels, which are 
-one of the concurrency constructs golang offers.
-The first channel is a boolean channel the second one is
-an int channel. We can read or write data to the channels.
-We will see how shortly.
-*/
-var done = make(chan bool)
-var msgs = make(chan int)
-
-/*
-In our main function, we spawn two go routines. go routines
-are cheap functions that will be run concurrently by go runtime. 
-They are just regular functions, but using the keyword go before
-a function call we can run them as go routines.
-So those two functions will run concurrently.
-Finally we block the main thread by reading from the done channel.
-As soon something comes down the channel, we read it, toss it and
-the main thread continues executing. In this case we exit the 
-program.
-*/
-func main () {
-   go produce()
-   go consume()
-   <- done
+type Executor struct {
+    Worker  int
+    Tasks   chan func()
+    wg      *sync.WaitGroup
+    started bool
 }
 
-/*
-The produce go routine (or function) loops 10 times
-and writes an integer (0..10) in the msg channel.
-Notice that we will block until someone (the consumer)
-reads form the other side of the channel. 
-Once we are done, we send a boolean on the done channel
-to let the main go routine that we are done.
-*/
-func produce() {
-    for i := 0; i < 10; i++ {
-        msgs <- i
+func SafeGo(f func(), msg string) {
+	defer func() {
+		if err := recover(); err != nil {
+			msg = fmt.Sprintf("%s \n recover error: %+v \n stacktrace \n %s", msg, err, string(debug.Stack()))
+			logger.Error(msg)
+		}
+	}()
+	f()
+}
+
+func (e *Executor) Start() {
+    if e.started {
+        return
     }
-    done <- true
+
+    i := 0
+    for i < e.Worker 
+        i++
+        e.wg.Add(1)
+        go func(i int) {
+            taskNum := 0
+            logger.Info("start executor worker %d", i)
+            for task := range e.Tasks {
+                SafeGo(task, "executor task panic")
+                taskNum++
+            }
+            e.wg.Done()
+            logger.Info("end executor worker %d, finish %d tasks", i, taskNum)
+
+        }(i)
+    }
+    e.started = true
+    logger.Info("start executor %d workers", e.Worker)
 }
 
-/*
-The consume go routine loops infinitely and reads 
-on the msgs channel. It will block until something 
-comes in the channel. 
-The syntax can be a little bit strange for people 
-coming from other languages.
-':=' creates a variable assigning it the type of the value
-coming on the right of the assignation. An int in this 
-case.
-'<-' is the go way to read from a channel.
-Once we have the msg (int) we dump it in the stdout.
-*/
-func consume() {
-    for {
-      msg := <-msgs
-      fmt.Println(msg)
-   }
+func (e *Executor) Close() {
+    if !e.started {
+        return
+    }
+
+    e.started = false
+    close(e.Tasks)
+    e.wg.Wait()
+    logger.Info("close executor successfully")
+}
+
+func (e *Executor) AddTask(f func()) {
+    if e.started {
+        e.Tasks <- f
+    }
+}
+
+func NewExecutor(workerNum int, queueSize int) *Executor {
+    if workerNum <= 0 {
+        workerNum = 1
+    }
+
+    if queueSize < workerNum {
+        queueSize = 2 * workerNum
+    }
+
+    return &Executor{
+        Worker:  workerNum,
+        Tasks:   make(chan func(), queueSize),
+        started: false,
+        wg:      &sync.WaitGroup{},
+    }
 }
 ```
 
+#### reference
 
-
-#### reference 
-
-* https://gist.github.com/drio/dd2c4ad72452e3c35e7e
+* qxf-backend
 
 
 
