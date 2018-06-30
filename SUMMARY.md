@@ -10,6 +10,7 @@
 * [golang](go.md)
   * [select子句](golang/selectzi-ju.md)
   * [gorountine](golang/gorountine.md)
+  * [channel](golang/channel.md)
   * [golang生产者消费者模型](golang/golangsheng-chan-zhe-xiao-fei-zhe-mo-xing.md)
   * [数据初始化 new & make](golang/new-object.md)
   * [golang-scheduler](golang/golang-scheduler.md)
