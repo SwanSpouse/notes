@@ -12,7 +12,7 @@ Most of what's written in this blog post is already described in the[original de
 
 All you need to know about the new scheduler is in that design document but this post has pictures, so it's clearly superior.
 
-关于scheduler的一切相关知识都可以在设计文档中找到。但是在本篇博客中，增加了图片进行说明。所以更容易理解。
+关于scheduler的一切相关知识都可以在设计文档中找到。但是在本篇博客中，增加了图片进行说明。所以更容易理解。 
 
 ### 为什么Go runtime system需要一个调度器?
 
@@ -49,8 +49,6 @@ To acomplish the task of scheduling, the Go Scheduler uses 3 main entities:
 为了实现调度的任务。go调度器使用了3个主要的实体:
 
 ![entities](http://images.cnblogs.com/cnblogs_com/swanspouse/1159380/o_go1.jpg)
-
-
 
 * The triangle represents an OS thread. It's the thread of execution managed by the OS and works pretty much like your standard POSIX thread. In the runtime code, it's called **M **for machine.
 
