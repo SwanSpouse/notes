@@ -17,6 +17,7 @@
   * [golang-scheduler](golang/golang-scheduler.md)
     * [Golang线程模型相关源码](golang/golang-scheduler/golangxian-cheng-mo-xing-xiang-guan-yuan-ma.md)
     * [Golang线程模型](golang/golang-scheduler/golangxian-cheng-mo-xing.md)
+    * [Linux 线程调度](golang/golang-scheduler/linux-xian-cheng-diao-du.md)
     * [Golang调度器](golang/golang-scheduler/golang-scheduler.md)
     * [The Go scheduler](golang/golang-scheduler/blog.md)
   * [内存管理](golang/nei-cun-guan-li.md)
