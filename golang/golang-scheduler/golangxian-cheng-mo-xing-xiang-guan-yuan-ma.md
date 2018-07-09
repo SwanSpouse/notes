@@ -1,13 +1,13 @@
 ### Golang线程模型相关源码\(golang 1.10\)
 
-源码位置在src/runtime/runtime2.go 
+源码位置在src/runtime/runtime2.go
 
 #### 全局变量
 
 ```go
 var (
     allglen    uintptr
-    allm       *m
+    allm       *m // 注释2. 全局m列表
     allp       []*p  // len(allp) == gomaxprocs; may change at safe points, otherwise immutable
     allpLock   mutex // Protects P-less reads of allp and all writes
     gomaxprocs int32
