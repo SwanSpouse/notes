@@ -15,6 +15,7 @@
   * [channel](golang/channel.md)
   * [golang 同步](golang/golang-tong-bu.md)
   * [golang-scheduler](golang/golang-scheduler.md)
+    * [Golang线程模型相关源码](golang/golang-scheduler/golangxian-cheng-mo-xing-xiang-guan-yuan-ma.md)
     * [Golang线程模型](golang/golang-scheduler/golangxian-cheng-mo-xing.md)
     * [Golang调度器](golang/golang-scheduler/golang-scheduler.md)
     * [The Go scheduler](golang/golang-scheduler/blog.md)
