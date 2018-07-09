@@ -1,16 +1,32 @@
-Gitlab是商用版的github。
+#### Gitlab是商用版的github。
 
-Confluence是开源的wiki
+#### Confluence是开源的wiki
 
-Grafana用来对系统状态进行监控
+产品需求文档。后台制定API等。
 
-Kibana 用来做日志搜集和查找
+#### Grafana用来对系统状态进行监控
 
-Jenkins用来做持续交付
+监控后台的qps、redis、mysql的访问情况等。
 
-Lvault用来存放配置文件
+#### Kibana 用来做日志搜集和查找
 
-sso用来做单点登录
+#### Jenkins用来做持续交付
 
-Lain是pass平台，用来管理docker容器
+运行测试、代码静态检测、测试覆盖率统计报表等。
+
+#### Lvault用来存放配置文件
+
+存储项目用到的配置文件。
+
+#### sso用来做单点登录
+
+现在我们还要使用这个来进行权限管理。现在的权限是通过URL正则表达式匹配来进行管理的。导致很多开发人员因为不知道正则表达式的规则，而漏掉一些应该管理的权限。看看有没有好的办法来解决这个问题。
+
+#### Lain是pass平台，用来管理docker容器
+
+#### Gitbook
+
+后台文档管理
+
+
 
