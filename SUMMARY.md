@@ -48,6 +48,7 @@
 * [项目集成](xiang-mu-ji-cheng.md)
   * [sso](xiang-mu-ji-cheng/sso.md)
   * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
+  * [Git常用命令](xiang-mu-ji-cheng/gitchang-yong-ming-ling.md)
   * [Gitlab](xiang-mu-ji-cheng/gitlab.md)
   * [Kibana](xiang-mu-ji-cheng/kibana.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
