@@ -1,6 +1,6 @@
 ### Golang线程模型相关源码\(golang 1.10\)
 
-源码位置在src/runtime/runtime2.go
+源码位置在src/runtime/runtime2.go 
 
 #### 全局变量
 
