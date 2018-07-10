@@ -12,7 +12,7 @@ Most of what's written in this blog post is already described in the[original de
 
 All you need to know about the new scheduler is in that design document but this post has pictures, so it's clearly superior.
 
-关于scheduler的一切相关知识都可以在设计文档中找到。但是在本篇博客中，增加了图片进行说明。所以更容易理解。 
+关于scheduler的一切相关知识都可以在设计文档中找到。但是在本篇博客中，增加了图片进行说明。所以更容易理解。
 
 ### 为什么Go runtime system需要一个调度器?
 
@@ -22,7 +22,7 @@ But before we look at the new scheduler, we need to understand why it's needed. 
 
 The POSIX thread API is very much a logical extension to the existing Unix process model and as such, threads get a lot of the same controls as processes. Threads have their own signal mask, can be assigned CPU affinity, can be put into cgroups and can be queried for which resources they use. All these controls add overhead for features that are simply not needed for how Go programs use goroutines and they quickly add up when you have 100,000 threads in your program.
 
-对于Unix等进程模型而言，使用POSIX \(可移植操作系统接口, Portable Operating System Interface of UNIX，缩写为 POSIX ）API 是非常符合逻辑的。因为线程拥有自己的信号掩码,
+对于现有的Unix这类进程模型而言，通过使用POSIX \(可移植操作系统接口, Portable Operating System Interface of UNIX，缩写为 POSIX ）线程API 可以像控制进行一样对线程进行操作。线程可以拥有自己的掩码、CPU等它们想获得的资源。
 
 Another problem is that the OS can't make informed scheduling decisions, based on the Go model. For example, the Go garbage collector requires that all threads are stopped when running a collection and that memory must be in a consistent state. This involves waiting for running threads to reach a point where we know that the memory is consistent.
 
@@ -32,7 +32,7 @@ When you have many threads scheduled out at random points, chances are that you'
 
 当有很多线程在运行的时候，它们内存的状态“杂乱无章”\(没有处于稳定的状态\)。所以通常情况下不得不等待所有线程都到达内存稳定的状态。在go的线程模型中，调度器可以保证在线程运行到内存稳定状态的时候再切换线程。这意味着，当我们需要进行垃圾回收的时候，我们只需要等待那些真正在CPU上运行的那些线程达到内存稳定的状态。（因为在线程切换的时候，线程内存必须到达稳定状态，才能够切换到下一个线程。）
 
-* 这里我的理解是：系统在进行线程调度的时候，只是根据时间片轮转或者一些规则来进行线程调度，而没有从线程的角度去考虑在这个时间点是否适合进行调度。因为在进行线程调度的时候需要做好多动作，例如保存当前线程当前的运行状态，以便再次获得运行机会的时候能够继续刚刚未完成的工作。Golang从多了一个层协程的概念，在调度的时候保证只有达到safe point的协程才会进行调度。这样就能保证只需要当前运行的协程到达safe point，所有的协程就是safe point状态的。
+洺吉S：这里我的理解是：系统在进行线程调度的时候，只是根据时间片轮转或者一些规则来进行线程调度，而没有从线程的角度去考虑在这个时间点是否适合进行调度。因为在进行线程调度的时候需要做好多动作，例如保存当前线程当前的运行状态，以便再次获得运行机会的时候能够继续刚刚未完成的工作。Golang从多了一个层协程的概念，在调度的时候保证只有达到safe point的协程才会进行调度。这样就能保证只需要当前运行的协程到达safe point，所有的协程就是safe point状态的。
 
 ### Our Cast of Characters 线程模型
 

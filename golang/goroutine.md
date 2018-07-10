@@ -6,6 +6,17 @@ goroutine就是一段代码，一个函数入口，以及在堆上为其分配�
 
 goroutine是协作式调度的，如果goroutine会执行很长时间，而且不是通过等待读取或写入channel的数据来同步的话，就需要主动调用Gosched\(\)来让出CPU。
 
+Blocking is fine : If a goroutine blocks on system call, it blocks it’s running thread. But another thread is taken from the waiting queue of Scheduler \(the Sched struct\) and used for other runnable goroutines.
+
+The go runtime scheduler does cooperative scheduling, which means another goroutine will only be scheduled if the current one is blocking or done. Some of these cases are:
+
+* Channel send and receive operations, if those operations would block.
+* The Go statement, although there is no guarantee that new goroutine will be scheduled immediately.
+* Blocking syscalls like file and network operations.
+* After being stopped for a garbage collection cycle.
+
+This is better than pre-emptive scheduling which uses timely system interrupts \(e.g. every 10 ms\) to block and schedule a new thread which may lead a task to take longer than needed to finish when number of threads increases or when a higher priority tasks need to be scheduled while a lower priority task is running.
+
 goroutine最大的价值是其实现了并发协程和实际并行执行的线程的映射以及动态扩展，随着其运行库的不断发展和完善，其性能一定会越来越好，尤其是在CPU核数越来越多的未来，终有一天我们会为了代码的简洁和可维护性而放弃那一点点性能的差别。
 
 #### gorountine的运作过程
@@ -52,6 +63,10 @@ runtime.NumGorountine函数
 runtime.LockOSTread和runtime.UnLockOSThread
 
 * 前者使调用它的Gorountine与当前运行它的M锁定在一起，后者是解除这样的锁定。多次调用不会产生问题。
+
+#### reference 
+
+* https://codeburst.io/why-goroutines-are-not-lightweight-threads-7c460c1f155f
 
 
 
