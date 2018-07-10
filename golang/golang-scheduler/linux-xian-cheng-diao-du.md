@@ -31,15 +31,9 @@ SCHED\_RR在SCHED\_FIFO的基础上会预先给定线程一个时间片，时间
 
 实时线程优先级高于所有普通线程，如果有实时线程处于运行态，则系统调度时一定会选择调用实时线程；正在运行的实时线程只会被拥有更高实时优先级的线程抢占。所以在应用中如果需要将某个线程设置为实时线程，则需要用户自己确保该线程不会处于忙执行而完全占用CPU资源，导致其他普通线程没法获得CPU资源而一直被阻塞得不到执行，并且需要合理给予优先级的值，太高有可能会影响重要系统线程的运行。**所有用户态线程默认没有实时优先级，都属于普通线程。**
 
-#### reference 
+#### reference
 
-* http://www.emtronix.com/article/article20171018.html
-
-  
-
-
-  
-
+* [http://www.emtronix.com/article/article20171018.html](http://www.emtronix.com/article/article20171018.html)
 
 
 
