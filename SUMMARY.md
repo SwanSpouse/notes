@@ -20,7 +20,7 @@
     * [Linux 线程调度](golang/golang-scheduler/linux-xian-cheng-diao-du.md)
     * [Golang调度器](golang/golang-scheduler/golang-scheduler.md)
     * [The Go scheduler](golang/golang-scheduler/blog.md)
-  * [内存管理](golang/nei-cun-guan-li.md)
+  * [golang 内存管理](golang/nei-cun-guan-li.md)
     * [逃逸分析](golang/tao-yi-fen-xi.md)
     * [Stack内存管理](golang/stacknei-cun-guan-li.md)
     * [Heap管理](golang/heapguan-li.md)
