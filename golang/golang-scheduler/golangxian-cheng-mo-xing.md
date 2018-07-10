@@ -89,7 +89,7 @@ M、P、G容器
 | 中文名称 | 源码中的名称 | 作用域 | 概要 |
 | :--- | :--- | :--- | :--- |
 | 全局M列表 | runtime.allm | runtime system | 存放所有的M的列表 |
-| 全局P列表 | runtime.allp | runtime system  | 存放所有的P的列表 |
+| 全局P列表 | runtime.allp | runtime system | 存放所有的P的列表 |
 | 全局G列表 | runtime.allg | runtime system | 存放所有的G的列表 |
 | 调度器的空闲M列表 | runtime.sched.midle | 调度器 | 存放空闲M的列表 |
 | 调度器的空闲P列表 | runtime.sched.pidle | 调度器 | 存放空闲P的列表 |
@@ -132,6 +132,8 @@ Go语言的垃圾回收任务是在"Stop the world"的环境下被执行的。
 sysmonwait, sysmonnote主要用于系统检测任务。在垃圾回收器进行垃圾回收的时候，被持续执行的系统监测任务也需要被暂停。这两个字段的作用就是及时地暂停和恢复系统监测任务的执行。 sysmonwait字段表示系统监测任务是否已被暂停的标记，而 sysmonnote字段则是被用来向执行系统检测任务的程序发送通知的。
 
 系统监测任务是被持续执行的。它被置于了无限的循环当中，每次迭代前都会检查调取器的gcwaiting字段的值，若为1，则说明垃圾回收器已经开始准备或正在执行垃圾回收任务。这时，系统监测器会先将调度器的sysmonwait字段的值设置为1表示系统监测任务已经被暂停。然后利用sysmonnote字段阻塞自身以等待垃圾回收的完成。在调度系统被重启之后，调度器若发现sysmonwait字段值为1则会利用sysmonnote字段向监测系统发送通知。系统监测器在收到该通知之后会立即执行当次迭代的后续流程并继续进行之后的迭代。
+
+#### ![](/assets/一次调度.png)
 
 #### g0和m0
 
