@@ -14,7 +14,7 @@
   * [channel](golang/channel.md)
   * [Golang 同步-原子操作](golang/golang-tong-bu.md)
   * [Golang 线程模型](golang/golang-scheduler.md)
-    * [Gorountine](golang/gorountine.md)
+    * [系统调用-协程](golang/gorountine.md)
     * [Golang线程模型相关源码](golang/golang-scheduler/golangxian-cheng-mo-xing-xiang-guan-yuan-ma.md)
     * [Golang线程模型](golang/golang-scheduler/golangxian-cheng-mo-xing.md)
     * [Linux 线程调度](golang/golang-scheduler/linux-xian-cheng-diao-du.md)
