@@ -13,7 +13,7 @@
   * [select子句](golang/selectzi-ju.md)
   * [gorountine](golang/gorountine.md)
   * [channel](golang/channel.md)
-  * [golang 同步](golang/golang-tong-bu.md)
+  * [golang 同步-原子操作](golang/golang-tong-bu.md)
   * [golang-scheduler](golang/golang-scheduler.md)
     * [Golang线程模型相关源码](golang/golang-scheduler/golangxian-cheng-mo-xing-xiang-guan-yuan-ma.md)
     * [Golang线程模型](golang/golang-scheduler/golangxian-cheng-mo-xing.md)
