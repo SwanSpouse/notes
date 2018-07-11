@@ -6,6 +6,7 @@
   * [字符编码ASCII & Unicode &UTF-8](zi-fu-bian-ma-ascii-andunicode-and-utf-8.md)
 * [Linux](linux.md)
   * [常用Linux命令汇总](linux/chang-yong-linux-ming-ling-hui-zong.md)
+  * [Vim](linux/vim.md)
   * [Linux I/O模型](linux/linux-iomo-xing.md)
   * [I/O模型改进版](linux/iomo-xing-gai-jin-ban.md)
 * [Golang](go.md)
