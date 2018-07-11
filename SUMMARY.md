@@ -56,6 +56,7 @@
 * [项目集成](xiang-mu-ji-cheng.md)
   * [sso](xiang-mu-ji-cheng/sso.md)
   * [OAuth2](xiang-mu-ji-cheng/oauth2.md)
+  * [RESTful](xiang-mu-ji-cheng/restful.md)
   * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
   * [Git常用命令](xiang-mu-ji-cheng/gitchang-yong-ming-ling.md)
   * [Gitlab](xiang-mu-ji-cheng/gitlab.md)
