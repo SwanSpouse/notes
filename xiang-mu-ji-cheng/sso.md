@@ -66,8 +66,7 @@ web系统由单系统发展成多系统组成的应用群，复杂性应该由�
 
 单点登录自然也要单点注销，在一个子系统中注销，所有子系统的会话都将被销毁，用下面的图来说明
 
-![](/assets/sso单点注销.png)  
-
+![](/assets/sso单点注销.png)
 
 sso认证中心一直监听全局会话的状态，一旦全局会话销毁，监听器将通知所有注册系统执行注销操作
 
@@ -82,11 +81,7 @@ sso认证中心一直监听全局会话的状态，一旦全局会话销毁，�
 
 ### 参考
 
-* https://www.cnblogs.com/ywlaker/p/6113927.html
-
-
-
-
+* [https://www.cnblogs.com/ywlaker/p/6113927.html](https://www.cnblogs.com/ywlaker/p/6113927.html)
 
 
 
