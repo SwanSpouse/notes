@@ -84,9 +84,24 @@ E步骤中，认证服务器发送的HTTP回复，包含以下参数：
 * refresh\_token：表示更新令牌，用来获取下一次的访问令牌，可选项。
 * scope：表示权限范围，如果与客户端申请的范围一致，此项可省略
 
+#### 使用OAuth2样例
+
+使用OAuth2来进行授权登录的例子。
+
+![](/assets/OAuth2Process.png)
+
+#### 关于OAuth2流程中两次申请的问题
+
+在OAuth2标准中，需要两次向授权服务器进行申请。第一次申请code，第二次申请token。为什么不直接申请一个token。
+
+* 豆瓣告诉用户几个信息，QQ授权中心的地址，授权后的回调地址，豆瓣的ClientID（QQ认证中心需要知道认证调用方的ID），用户拿着这几个东西去QQ验证密码后，得到TOKEN，然后交给豆瓣。豆瓣拿着TOKEN、ClientID、ClientSecret去QQ认证中心获取头像和姓名。
+
+* 上面说发的矛盾在于认证服务器和资源服务器是同一家。都是QQ。但是当资源服务器和认证服务器不是一家的时候。就行不通了。豆瓣不能告诉资源服务器自己的ClientSecret。只能告诉资源服务器ClientId和Token，然后资源服务器会找认证服务器去验证Token是否有效。
+
 #### reference
 
 * [http://www.ruanyifeng.com/blog/2014/05/oauth\_2\_0.html](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
+* https://www.cnblogs.com/flashsun/p/7424071.html 
 
 
 

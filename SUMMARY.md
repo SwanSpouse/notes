@@ -55,7 +55,7 @@
   * [redis 集群](redis/redis-ji-qun.md)
   * [一次完整的客户端与服务器连接事件示例](redis/yi-ci-wan-zheng-de-ke-hu-duan-yu-fu-wu-qi-lian-jie-shi-jian-shi-li.md)
 * [项目集成](xiang-mu-ji-cheng.md)
-  * [sso](xiang-mu-ji-cheng/sso.md)
+  * [SSO](xiang-mu-ji-cheng/sso.md)
   * [OAuth2](xiang-mu-ji-cheng/oauth2.md)
   * [RESTful](xiang-mu-ji-cheng/restful.md)
   * [Jenkins](xiang-mu-ji-cheng/jenkins.md)
