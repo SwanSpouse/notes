@@ -101,7 +101,7 @@ E步骤中，认证服务器发送的HTTP回复，包含以下参数：
 #### reference
 
 * [http://www.ruanyifeng.com/blog/2014/05/oauth\_2\_0.html](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
-* https://www.cnblogs.com/flashsun/p/7424071.html 
+* [https://www.cnblogs.com/flashsun/p/7424071.html](https://www.cnblogs.com/flashsun/p/7424071.html) 
 
 
 
