@@ -32,6 +32,8 @@
     * [golang-gc](golang/golang-gc.md)
   * [Golang调试工具](golang/golangdiao-shi-gong-ju.md)
     * [调度器追踪](golang/golangdiao-shi-gong-ju/nei-cun-fen-xi-qi.md)
+  * Golang源码阅读笔记
+    * [stack.go](golang/stackgo.md)
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)
     * [jvm 内存区域](java/java-xu-ni-ji/java-jvm.md)
