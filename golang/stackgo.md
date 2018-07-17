@@ -52,6 +52,12 @@ The main targets of tiny allocator are small strings and standalone escaping var
 
 
 
+
+
+
+
+
+
 #### reference
 
 * 1.10 golang source code
