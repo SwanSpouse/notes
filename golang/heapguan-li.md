@@ -14,14 +14,26 @@ Go内存池管理的核心数据结构为mHeap。该结构管理从os申请的�
 
 Go内存管理模块的核心数据结构比较少:
 
+* **mFixAlloc**
+  runtime/mfixalloc.go![](/assets/mfixAlloc.png)`list`指针上挂的一个链表，这个链表的每个节点是一个固定大小的内存块，cachealloc中的list存储的内存块大小为`sizeof(MCache)`，而spanalloc中的list存储的内存块大小为`sizeof(MSpan)`。`chunk`指针始终挂载的是一个128k大的内存块。 FixAlloc提供了三个API，分别是runtime·FixAlloc\_Init、runtime·FixAlloc\_Alloc和runtime·FixAlloc\_Free。
+  使用FixAlloc分配MCache和MSpan对象的时候，首先是查找FixAlloc的list链表，如果list不为空，就直接拿一个内存块返回使用; 如果list为空，就把焦点转移到chunk上去，如果128k的chunk内存中有足够的空间，就切割一块内存出来返回使用，如果chunk内存没有剩余内存的话，就从操作系统再申请128k内存替代老的chunk。FixAlloc的固定对象分配逻辑就这么简单，相反释放逻辑更简单了，释放的对象就是直接放到list中，并不会返回给操作系统。当然mcache的个数基本是稳定的，也就是底层线程个数，但span对象就不一定那么稳定了，所以FixAlloc的内存可能增长的因素就是span的对象太多。
+
 * **mheap**
-  ：管理全局的从os申请的虚拟内存空间；
-* **mspan**
-  ：将mheap按照固定大小切分而成的细粒度的内存区块，每个区块映射了虚拟内存中的若干连续页面，页大小由Go内部定义；
-* **mcache**
-  ：与线程相关缓存，该结构的存在是为了减少内存分配时的锁操作，优化内存分配性能。
-* **mcentral**
-  ：集中内存池，线程在本地分配失败后，尝试向mcentral申请，如果mcentral也没有资源，则尝试向mheap分配。
+  管理全局的从os申请的虚拟内存空间；
+* **mspan**  
+  将mheap按照固定大小切分而成的细粒度的内存区块，每个区块映射了虚拟内存中的若干连续页面，页大小由Go内部定义；
+
+  mspan 用来管理一组组page对象。page就是一个4k大小的内存块而已。span就是将这一个个连续的page给管理起来，注意是连续的page。![](/assets/mspan.png)
+
+  npages 表示是此span存储的page的个数，`start`可以看作一个page指针，指向第一个page，有了第一个page当然就可以算出后面的任何一个page的起始地址了，因为span管理的始终是连续的一组page。这里需要注意start的类型是PageID，由此可以看出这个start保存的并不是第一个page的起始地址，而是第一个page的id值。这个id值是如何算出来的呢？其实给每个page算一个id，是非常简单的事情，只要将这个page的的地址除以4096取整\(伪代码：`page_addr>>20`\)即可，当然前提是已经保证好了每个page按4k对齐。是不是觉得很精妙，这样一来每个page都有一个整数id了，并且任何一个内存地址都可以通过移位算出这个地址属于哪个page，这个很重要。
+
+  `sizeclass`如果是0的话，就代表这个span是用来分配大对象的，其他值都是分配小对象了。在分配小对象的时候，start字段维护的所有page，最后将会被切分成一个一个的连续内存块，内存块大小当然就是小对象的大小，这些切分出来的内存块将被链接成为一个链表挂在freelist字段上。分配大对象的时候，freelist就没什么用了。
+
+* **mcache**  
+  与线程相关缓存，该结构的存在是为了减少内存分配时的锁操作，优化内存分配性能。
+
+* **mcentral**  
+  集中内存池，线程在本地分配失败后，尝试向mcentral申请，如果mcentral也没有资源，则尝试向mheap分配。
 
 ### 数据结构关系图![](/assets/GoHeap数据关系图.png)
 
