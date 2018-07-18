@@ -34,6 +34,7 @@
     * [调度器追踪](golang/golangdiao-shi-gong-ju/nei-cun-fen-xi-qi.md)
   * [Golang源码阅读笔记](golang/golangyuan-ma-yue-du-bi-ji.md)
     * [stack.go](golang/stackgo.md)
+    * [malloc.go](golang/mallocgo.md)
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)
     * [jvm 内存区域](java/java-xu-ni-ji/java-jvm.md)
