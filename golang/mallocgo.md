@@ -2,8 +2,6 @@
 
 ![](/assets/memory allocator.png)
 
-
-
 Memory allocator
 
 This was originally based on tcmalloc, but has diverged quite a bit. [http://goog-perftools.sourceforge.net/doc/tcmalloc.html](http://goog-perftools.sourceforge.net/doc/tcmalloc.html)
@@ -31,6 +29,7 @@ Allocating a small object proceeds up a hierarchy of caches：
 5. 首先会扫描mspan的free bitmap去寻找是否有未使用的slot。如果存在就进行分配。分配mspan的slot是不需要进行加锁的。
 
 6. 如果mspan中没有空闲的slot，那么就会想mcentral的mspan list申请空闲mspan，mcentral进行内存分配的时候，是需要进行加锁的。
+
 7. 如果mcentral中的mspan list也为空， 那么就会去mheap中申请mspan。
 8. 如果mheap同样没有足够的空间，那么就会向操作系统申请一组pages\(至少1MB\)。因为需要和操作系统进行交互，所以分配pages的代价会比较高。
 
@@ -46,10 +45,11 @@ Allocating a small object proceeds up a hierarchy of caches：
 
 4. If an mspan remains idle for long enough, return its pages to the operating system.
 
-1. 清理后的mspan首先会分配给mcache，供mcache进行分配。
-2. 否则，如果mspan仍旧存在已分配的对象，它会被放入mcentral的free list中，以便后续继续存放相应大小的class。
-3. 否则，如果mspan中的所有对象都已经被清理，那么这个mspan的状态为idle，它会被返回到mheap中，并且不会有class大小的限制，同时也可以和临近的idle mspan合并成一个，共同进行分配。
-4. 如果mspan处于idle超过一定时长，就会分返回给操作系统。
+5. 清理后的mspan首先会分配给mcache，供mcache进行分配。
+
+6. 否则，如果mspan仍旧存在已分配的对象，它会被放入mcentral的free list中，以便后续继续存放相应大小的class。
+7. 否则，如果mspan中的所有对象都已经被清理，那么这个mspan的状态为idle，它会被返回到mheap中，并且不会有class大小的限制，同时也可以和临近的idle mspan合并成一个，共同进行分配。
+8. 如果mspan处于idle超过一定时长，就会分返回给操作系统。
 
 Allocating and freeing a large object uses the mheap directly, bypassing the mcache and mcentral.
 
@@ -66,10 +66,10 @@ Free object slots in an mspan are zeroed only if mspan.needzero is false. If nee
 4. 可以避免stack frame分配的时候进行统一清零操作。
 
 5. （没有想好怎么进行翻译）
+
 6. 对于没有使用到的pages，省去了初始化的工作。
 
 ```golang
-
 // 分配小于32KB的对象
 if size <= maxSmallSize {
       // 对于小于 16 byte 的内存块，mcache 有个专门的内存区域 tiny 用来分配，tiny 是指针，指向开始地址。
@@ -143,8 +143,6 @@ if size <= maxSmallSize {
       size = s.elemsize
 }
 ```
-
-
 
 #### reference
 
