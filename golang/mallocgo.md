@@ -68,6 +68,84 @@ Free object slots in an mspan are zeroed only if mspan.needzero is false. If nee
 5. （没有想好怎么进行翻译）
 6. 对于没有使用到的pages，省去了初始化的工作。
 
+```golang
+
+// 分配小于32KB的对象
+if size <= maxSmallSize {
+      // 对于小于 16 byte 的内存块，mcache 有个专门的内存区域 tiny 用来分配，tiny 是指针，指向开始地址。
+      if noscan && size < maxTinySize {
+            off := c.tinyoffset
+            // Align tiny pointer for required (conservative) alignment.
+            if size&7 == 0 {
+                  off = round(off, 8)
+            } else if size&3 == 0 {
+                  off = round(off, 4)
+            } else if size&1 == 0 {
+                  off = round(off, 2)
+            }
+            if off+size <= maxTinySize && c.tiny != 0 {
+                  // The object fits into existing tiny block.
+                  x = unsafe.Pointer(c.tiny + off)
+                  c.tinyoffset = off + size
+                  c.local_tinyallocs++
+                  mp.mallocing = 0
+                  releasem(mp)
+                  return x
+            }
+            // Allocate a new maxTinySize block.
+            span := c.alloc[tinySpanClass]
+            v := nextFreeFast(span)
+            if v == 0 {
+                  v, _, shouldhelpgc = c.nextFree(tinySpanClass)
+            }
+            x = unsafe.Pointer(v)
+            (*[2]uint64)(x)[0] = 0
+            (*[2]uint64)(x)[1] = 0
+            // See if we need to replace the existing tiny block with the new one
+            // based on amount of remaining free space.
+            if size < c.tinyoffset || c.tiny == 0 {
+                  c.tiny = uintptr(x)
+                  c.tinyoffset = size
+            }
+            size = maxTinySize
+      } else {
+      /*
+      对于 size 介于 16 ~ 32K byte 的内存分配先计算应该分配的 sizeclass，然后去 mcache 里面 alloc[sizeclass] 申请，如果 mcache.alloc[sizeclass] 不足以申请，则 mcache 向 mcentral 申请，然后再分配。mcentral 给 mcache 分配完之后会判断自己需不需要扩充，如果需要则想 mheap 申请。
+      */
+            var sizeclass uint8
+            if size <= smallSizeMax-8 {
+                  sizeclass = size_to_class8[(size+smallSizeDiv-1)/smallSizeDiv]
+            } else {
+                  sizeclass = size_to_class128[(size-smallSizeMax+largeSizeDiv-1)/largeSizeDiv]
+            }
+            size = uintptr(class_to_size[sizeclass])
+            spc := makeSpanClass(sizeclass, noscan)
+            span := c.alloc[spc]
+            v := nextFreeFast(span)
+            if v == 0 {
+                  v, span, shouldhelpgc = c.nextFree(spc)
+            }
+            x = unsafe.Pointer(v)
+            if needzero && span.needzero != 0 {
+                  memclrNoHeapPointers(unsafe.Pointer(v), size)
+            }
+      }
+} else {
+      // 分配大对象
+      var s *mspan
+      shouldhelpgc = true
+      systemstack(func() {
+            s = largeAlloc(size, needzero, noscan)
+      })
+      s.freeindex = 1
+      s.allocCount = 1
+      x = unsafe.Pointer(s.base())
+      size = s.elemsize
+}
+```
+
+
+
 #### reference
 
 * golang source code 1.10
