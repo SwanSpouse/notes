@@ -22,11 +22,11 @@ Go内存管理模块的核心数据结构比较少:
 
 #### 数据结构关系图![](/assets/GoHeap数据关系图.png)
 
-1. mheap管理向os申请、释放、组织span；
+1. mheap管理向os申请、释放、组织mspan；
 
-2. mcentral按照自己管理的块大小将span划分成多个小block，并分配给mcache；
+2. mcentral按照自己管理的块大小将mspan分配给mcache；
 
-3. mspan是数据的实际存储区域，按照central管理的块规格被切分成小block;
+3. mspan是数据的实际存储区域，按照mcentral管理的块规格被切分成小block, sizeClass。
 
 4. mcache管理不同规格\(块大小\)的mspan：规格相同的mspan被链接到同一个链表中。
 
