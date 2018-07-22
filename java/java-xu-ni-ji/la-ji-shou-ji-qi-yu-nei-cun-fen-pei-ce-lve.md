@@ -41,7 +41,7 @@
 6. 通过write-barrier检测对象有变化，重复以上操作
 7. 收集所有白色对象（垃圾）
 
-![](http://ww3.sinaimg.cn/large/6944d767gw1f1jvnkic28j20hh0aejs2.jpg)
+![](/assets/三色标记算法.png)
 
 过程如上图所示。
 
