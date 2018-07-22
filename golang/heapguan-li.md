@@ -44,6 +44,8 @@ per-P cache，可以认为是 local cache。![](/assets/golang数据结构关系
 
 mcache拥有一个大小为 67 的指针（指针指向 mspan ）数组（\_NumSizeClasses = 67），每个数组元素用来包含特定大小的块。当要分配内存大小时，为 object 在 alloc 数组中选择合适的元素来分配。67 种块大小为 0，8 byte, 16 byte, …
 
+_洺吉：这里的数组的值是怎么分配的呢？最开始的时候是8byte，然后是16byte，到最后4096 byte。_
+
 #### **mcentral**
 
 集中内存池，线程在本地分配失败后，尝试向mcentral申请，如果mcentral也没有资源，则尝试向mheap分配。  

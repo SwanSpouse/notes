@@ -12,8 +12,7 @@ tcmalloc分配的内存主要来自两个地方：全局缓存堆和进程的私
 
 小对象内存分配默认会分配86个不同大小的块，而这些块的大小并没有明确说明，需要查一下源码。每种大小的块的数组的长度都采用使用了才初始化，有点类似于lazy-initialize。
 
-![](/assets/tcmalloc小对象.png)  
-
+![](/assets/tcmalloc小对象.png)
 
 #### Big Object Allocation
 
@@ -24,8 +23,7 @@ tcmalloc分配的内存主要来自两个地方：全局缓存堆和进程的私
 
 tcmalloc使用span来管理内存分页，一个span可以包含几个连续分页。span的状态只有未分配、作为大对象分配、作为小对象分配。
 
-![](/assets/tcmalloc_span.png)  
-
+![](/assets/tcmalloc_span.png)
 
 #### go的内存分配
 
@@ -37,11 +35,11 @@ go语言的内存分配并不是和tcmalloc一模一样。
 
 #### reference
 
-* http://legendtkl.com/2015/12/11/go-memory/
+* [http://legendtkl.com/2015/12/11/go-memory/](http://legendtkl.com/2015/12/11/go-memory/)
 
-* http://goog-perftools.sourceforge.net/doc/tcmalloc.html
+* [http://goog-perftools.sourceforge.net/doc/tcmalloc.html](http://goog-perftools.sourceforge.net/doc/tcmalloc.html)
 
-* https://github.com/gperftools/gperftools
+* [https://github.com/gperftools/gperftools](https://github.com/gperftools/gperftools)
 
 
 

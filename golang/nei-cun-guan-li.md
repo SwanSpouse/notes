@@ -1,8 +1,8 @@
 ### Golang 内存管理
 
-go的内存管理参考了tcmalloc（thread-caching malloc\)的思想。
-
 在这里主要来描述golang是怎样进行内存管理的和垃圾回收的。
+
+go的内存管理参考了tcmalloc（thread-caching malloc\)的思想。思想主要是通过建立全局缓存和线程私有缓存，两级缓存，来提供内存分配的效率。
 
 参照Java垃圾回收的一些概念和步骤，看golang是怎样实现垃圾回收的。同时比较一下两种垃圾回收机制的优劣。
 
