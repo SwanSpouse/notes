@@ -29,7 +29,7 @@
     * [逃逸分析](golang/tao-yi-fen-xi.md)
     * [内存分配算法](golang/nei-cun-fen-pei-suan-fa.md)
     * [Stack内存](golang/stacknei-cun-guan-li.md)
-    * [内存模型](golang/heapguan-li.md)
+    * [Heap内存模型](golang/heapguan-li.md)
       * [mFixAlloc](golang/heapguan-li/mfixalloc.md)
       * [mheap](golang/heapguan-li/mheap.md)
       * [mspan](golang/heapguan-li/mspan.md)
