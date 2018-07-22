@@ -2,9 +2,7 @@
 
 要启动go协程，必须要为其准备栈空间，用来存储函数内变量、执行函数调用等。在go协程退出后，其占用的stack内存也会随之一同释放。
 
-实际应用中协程的启动、退出可能会比较频繁，runtime必须要做点什么来保证启动、销毁协程的代价尽量小。而申请、释放stack空间所需内存则是一个比较大的开销，因此，go runtime采用了stack cache pool来缓存一定数量的stack memory。申请时从stack cache pool分配，释放时首先归还给stack cache pool。
-
-_洺吉：感觉stack是一个被抽象出来的逻辑上的概念。在实际的内存模型中，stack这块区域并不存在。所谓的stack的内存其实也是被分配在mcache中的内存。只不过stack这部分内存有个特点，就是当go协程退出的时候，这部分内存会被释放。所以这部分有着相同生命周期的内存区域被抽象成了一个概念叫做stack内存。_
+实际应用中协程的启动、退出可能会比较频繁，runtime必须要做点什么来保证启动、销毁协程的代价尽量小。而申请、释放stack空间所需内存则是一个比较大的开销，因此，go runtime采用了**stack cache pool**来缓存一定数量的stack memory。申请时从stack cache pool分配，释放时首先归还给stack cache pool。
 
 ### 主要思想
 
