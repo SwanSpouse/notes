@@ -11,5 +11,5 @@ arena 是 Golang 中用于分配内存的连续虚拟地址区域。由 mheap �
 
 ![](/assets/mheap_arena.png)
 
-
+![](/assets/mheap.png)
 
