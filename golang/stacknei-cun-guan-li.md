@@ -10,9 +10,7 @@ stack cache pool的主要思想是按照固定大小划分成多级：每级别�
 
 同时为了效率考虑，除了全局的stack cache pool外，每个线程m还有自己的stack cache。这样，线程在分配的时候可以优先从自己的stack cache中查找，提高效率。
 
-初始时，stack cache pool为空：当有stack分配需求时，首先向os申请一块较大的内存，将其按照该级别的stack大小切割后放在空闲stack列表上，然后再从该空闲stack列表上分配。主要结构如下：
-
-![](/assets/import.png)这里的分配算法思想是:
+初始时，stack cache pool为空：当有stack分配需求时，首先向os申请一块较大的内存，将其按照该级别的stack大小切割后放在空闲stack列表上，然后再从该空闲stack列表上分配。主要结构如下：![](/assets/import.png)这里的分配算法思想是:
 
 1. 如果线程m的local stack cache为空，则直接从全局的stack cache pool中分配；
 2. 否则先从线程的local stack cache中分配，如果无法分配，则需要先给线程分配出一批stack，赋给该线程，再从线程local stack cache中再分配。

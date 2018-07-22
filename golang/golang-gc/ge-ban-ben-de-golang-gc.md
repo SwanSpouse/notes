@@ -15,6 +15,7 @@ go 语言在 1.3 以前，使用的是比较蠢的传统 Mark-Sweep 算法。
 1.5 版本进行了较大改进，使用了三色标记算法。go 1.5 在源码中的解释是“非分代的、非移动的、并发的、三色的标记清除垃圾收集器”
 
 * 1.5版本go team对gc又进行了比较大的改进（1.4中已经埋下伏笔如write barrier的引入）,官方的主要目标是减少延迟。go 1.5正在实现的垃圾回收器是“非分代的、非移动的、并发的、三色的标记清除垃圾收集器”。分代算法上文已经提及，是一种比较好的垃圾回收管理策略，然1.5版本中并未考虑实现；我猜测的原因是步子不能迈太大，得逐步改进，go官方也表示会在1.6版本的gc优化中考虑。同时引入了上文介绍的三色标记法，这种方法的mark操作是可以渐进执行的而不需每次都扫描整个内存空间，可以减少stop the world的时间。 由此可以看到，一路走来直到1.5版本，go的垃圾回收性能也是一直在提升，但是相对成熟的垃圾回收系统（如java jvm和javascript v8），go需要优化的路径还很长。
+*  Since Go version 1.5, the collector is designed so that the stop the world task will take no more than 10 milliseconds out of every 50 milliseconds of execution time.
 
 go 除了标准的三色收集以外，还有一个辅助回收功能，防止垃圾产生过快手机不过来的情况。这部分代码在 runtime.gcAssistAlloc 中。
 

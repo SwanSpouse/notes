@@ -4,15 +4,21 @@
 
 逃逸分析是一种确定指针动态范围的方法，可以分析在程序的哪些地方可以访问到指针。它涉及到指针分析和形状分析。 当一个变量\(或对象\)在子程序中被分配时，一个指向变量的指针可能逃逸到其它执行线程中，或者去调用子程序。如果使用尾递归优化（通常在函数编程语言中是需要的），对象也可能逃逸到被调用的子程序中。 如果一个子程序分配一个对象并返回一个该对象的指针，该对象可能在程序中的任何一个地方被访问到——这样指针就成功“逃逸”了。如果指针存储在全局变量或者其它数据结构中，它们也可能发生逃逸，这种情况是当前程序中的指针逃逸。 逃逸分析需要确定指针所有可以存储的地方，保证指针的生命周期只在当前进程或线程中。
 
-#### 逃逸分析的作用
+#### 逃逸分析的优点
 
 * 最大的好处应该是减少gc的压力，不逃逸的对象分配在栈上，当函数返回时就回收了资源，不需要gc标记清除。
 
-* 因为逃逸分析完后可以确定哪些变量可以分配在栈上，栈的分配比堆快，性能好。
+* 逃逸分析完后可以确定哪些变量可以分配在栈上，栈的分配比堆快，性能好。
 
 * 同步消除，如果你定义的对象的方法上有同步锁，但在运行时，却只有一个线程在访问，此时逃逸分析后的机器码，会去掉同步锁运行。
 
 go在一定程度消除了堆和栈的区别，因为go在编译的时候进行逃逸分析，来决定一个对象放栈上还是放堆上，不逃逸的对象放栈上，可能逃逸的放堆上。
+
+#### 逃逸分析的缺点
+
+但是逃逸分析会有时间消耗，所以性能未必提升多少，并且由于逃逸分析比较耗时，目前的实现都是采用不那么准确但是时间压力相对较小的算法来完成逃逸分析，这就可能导致效果不稳定，要慎用。
+
+由于HotSpot虚拟机目前的实现方法导致栈上分配实现起来比较复杂，因为在HotSpot中暂时还没有做这项优化。
 
 ##### How do I know whether a variable is allocated on the heap or the stack? {#How-do-I-know-whether-a-variable-is-allocated-on-the-heap-or-the-stack}
 
@@ -24,11 +30,9 @@ The storage location does have an effect on writing efficient programs. When pos
 
 知道变量的存储位置确实和效率编程有关系。如果可能，Golang 编译器会将函数的局部变量分配到函数栈帧（stack frame）上。然而，如果编译器不能确保变量在函数 return 之后不再被引用，编译器就会将变量分配到堆上。而且，如果一个局部变量非常大，那么它也应该被分配到堆上而不是栈上。
 
-In the current compilers, if a variable has its address taken, that variable is a candidate for allocation on the heap. However, a basic_escape analysis_recognizes some cases when such variables will not live past the return from the function and can reside on the stack.
+In the current compilers, if a variable has its address taken, that variable is a candidate for allocation on the heap. However, a basic\_escape analysis\_recognizes some cases when such variables will not live past the return from the function and can reside on the stack.
 
 当前情况下，如果一个变量被取地址，那么它就有可能被分配到堆上。然而，还要对这些变量做逃逸分析，如果函数 return 之后，变量不再被引用，则将其分配到栈上。
-
-
 
 #### 参考
 
@@ -36,9 +40,11 @@ In the current compilers, if a variable has its address taken, that variable is 
 
 * Go 逃逸分析的缺陷: [https://studygolang.com/articles/12396?fr=sidebar](https://studygolang.com/articles/12396?fr=sidebar)
 
+* http://www.voidcn.com/article/p-qznjjiyo-bnb.html
+
 * [https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html](https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html)
 
-* http://legendtkl.com/2017/04/02/golang-alloc/
+* [http://legendtkl.com/2017/04/02/golang-alloc/](http://legendtkl.com/2017/04/02/golang-alloc/)
 
 
 
