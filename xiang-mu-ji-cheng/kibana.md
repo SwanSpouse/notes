@@ -40,8 +40,8 @@ Kibana是一个开源的分析与可视化平台，设计出来用于和Elastics
 
 * AND OR例子：firstname:H\* AND age:20 firstname:H\* OR age:20
 
-* * : 搜索结果中必须包含此项
-* * : 不能含有此项
+* \+ : 搜索结果中必须包含此项
+* \- : 不能含有此项
 * 例： +firstname:H\* -age:20 city:H\*    firstname字段结果中必须存在H开头的，不能有年龄是20的，city字段H开头的可有可无。
 
 优先级

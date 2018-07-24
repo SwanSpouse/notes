@@ -78,7 +78,7 @@
   * [Kibana](xiang-mu-ji-cheng/kibana.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
   * [基本概念](ji-suan-ji-wang-luo/ji-ben-gai-nian.md)
-* [分布式系统](fen-bu-shi-xi-tong.md)
+* [大数据相关](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
   * [分布式系统概论](fen-bu-shi-xi-tong/fen-bu-shi-xi-tong-gai-lun.md)
   * [No sql理论基础](fen-bu-shi-xi-tong/no-sqlli-lun-ji-chu.md)
