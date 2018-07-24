@@ -35,7 +35,7 @@
       * [mspan](golang/heapguan-li/mspan.md)
       * [mcache](golang/heapguan-li/mcache.md)
       * [mcentral](golang/heapguan-li/mcentral.md)
-    * [内存分配](golang/nei-cun-fen-pei-suan-fa.md)
+    * [内存分配算法](golang/nei-cun-fen-pei-suan-fa.md)
     * [内存释放](golang/nei-cun-shi-fang.md)
     * [垃圾回收](golang/golang-gc.md)
       * [GC算法](golang/golang-gc/gcsuan-fa.md)
