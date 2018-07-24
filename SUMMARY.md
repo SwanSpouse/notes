@@ -6,6 +6,8 @@
   * [字符编码ASCII & Unicode &UTF-8](zi-fu-bian-ma-ascii-andunicode-and-utf-8.md)
 * [数据结构](shu-ju-jie-gou.md)
   * [树](shu-ju-jie-gou/shu.md)
+    * [二叉树相关](shu-ju-jie-gou/shu/er-cha-shu-xiang-guan.md)
+    * [红黑树](shu-ju-jie-gou/shu/hong-hei-shu.md)
 * [Linux](linux.md)
   * [常用Linux命令汇总](linux/chang-yong-linux-ming-ling-hui-zong.md)
   * [Vim](linux/vim.md)
