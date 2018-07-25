@@ -8,6 +8,7 @@
   * [树](shu-ju-jie-gou/shu.md)
     * [二叉树相关](shu-ju-jie-gou/shu/er-cha-shu-xiang-guan.md)
     * [红黑树](shu-ju-jie-gou/shu/hong-hei-shu.md)
+    * [B树&B+树](shu-ju-jie-gou/shu/b681126-b-shu.md)
 * [Linux](linux.md)
   * [常用Linux命令汇总](linux/chang-yong-linux-ming-ling-hui-zong.md)
   * [Vim](linux/vim.md)
