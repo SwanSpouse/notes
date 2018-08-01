@@ -100,7 +100,4 @@
   * [公钥私钥](qu-kuai-lian/gong-yao-si-yao.md)
   * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
-* [数据结构](shu-ju-jie-gou.md)
-  * [树](shu-ju-jie-gou/shu.md)
 * [学习计划](plan.md)
-
