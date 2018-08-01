@@ -17,10 +17,10 @@
 * [Golang](go.md)
   * [Golang 语言基础](golang/golang-yu-yan-ji-chu.md)
     * [数据初始化 new & make](golang/new-object.md)
-    * [channel](golang/channel.md)
+    * [Channel](golang/channel.md)
+    * [Select子句](golang/selectzi-ju.md)
     * [Golang 并发处理demo](golang/golangsheng-chan-zhe-xiao-fei-zhe-mo-xing.md)
     * [Golang 同步-原子操作](golang/golang-tong-bu.md)
-    * [select子句](golang/selectzi-ju.md)
   * [Golang 线程模型](golang/golang-scheduler.md)
     * [系统调用](golang/gorountine.md)
     * [协程](golang/xie-cheng.md)
@@ -99,3 +99,4 @@
   * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
 * [学习计划](plan.md)
+
