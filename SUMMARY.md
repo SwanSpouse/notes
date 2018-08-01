@@ -49,7 +49,6 @@
       * [各版本的golang gc](golang/golang-gc/ge-ban-ben-de-golang-gc.md)
   * [Golang 调试工具](golang/golangdiao-shi-gong-ju.md)
     * [调度器追踪](golang/golangdiao-shi-gong-ju/nei-cun-fen-xi-qi.md)
-  * Golang 语言基础
 * [java](java.md)
   * [java 虚拟机](java/java-xu-ni-ji.md)
     * [jvm 内存区域](java/java-xu-ni-ji/java-jvm.md)
@@ -100,4 +99,3 @@
   * [区块链介绍](qu-kuai-lian/qu-kuai-lian-jie-shao.md)
   * [比特币网络节点的构成](qu-kuai-lian/bi-te-bi-wang-luo-jie-dian-de-gou-cheng.md)
 * [学习计划](plan.md)
-
