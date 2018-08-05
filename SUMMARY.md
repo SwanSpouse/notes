@@ -4,6 +4,7 @@
 * [计算机基础](suan-fa.md)
   * [HashCode](hash-code.md)
   * [字符编码ASCII & Unicode &UTF-8](zi-fu-bian-ma-ascii-andunicode-and-utf-8.md)
+  * [布隆过滤器](bu-long-guo-lv-qi.md)
 * [数据结构](shu-ju-jie-gou.md)
   * [树](shu-ju-jie-gou/shu.md)
     * [二叉树相关](shu-ju-jie-gou/shu/er-cha-shu-xiang-guan.md)
