@@ -93,6 +93,7 @@
     * [HDFS](fen-bu-shi-xi-tong/hadoop/hdfs.md)
     * [YARN](fen-bu-shi-xi-tong/hadoop/yarn.md)
     * [MapReduce](fen-bu-shi-xi-tong/hadoop/mapreduce.md)
+    * [MapReduce经典操作](fen-bu-shi-xi-tong/hadoop/mapreducejing-dian-cao-zuo.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
