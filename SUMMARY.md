@@ -85,6 +85,7 @@
   * [Kibana](xiang-mu-ji-cheng/kibana.md)
   * [Maven](xiang-mu-ji-cheng/maven.md)
     * [基本概念](xiang-mu-ji-cheng/maven/ji-ben-gai-nian.md)
+    * [常用命令](xiang-mu-ji-cheng/maven/chang-yong-ming-ling.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
   * [基本概念](ji-suan-ji-wang-luo/ji-ben-gai-nian.md)
 * [大数据相关](fen-bu-shi-xi-tong.md)
