@@ -6,7 +6,7 @@
 
 #### 常见App保持登录的实现方式
 
-利用cCookie机制实现
+利用Cookie机制实现
 
 * 如果我们的App和后端通讯采用的http通讯方式，可以利用cookie技术进行登录状态保持。比如我们可以把sessionID和有效期保存在cookie中，发给前端App，前端App收到后保存在本地。当访问后端服务把sessionID和有效期作为参数传给后台进行认证。直到sessionID失效，用户都不需要重新登录。
 
@@ -20,8 +20,11 @@ Token方式
 
 #### Token方式保持App登录具体实现
 
-  
+首先在登录成功、注册成功的时候，后台会根据用户的user_id、device_id 等信息生成用户的session\_id，并返回给APP。
 
+APP在每次请求后台的时候会把session\_id带上。
 
+后台会对APP请求中的session\_id进行校验。校验session\_id是否合法、是否过期。如果不合法，则提示让APP重新进行登录。
 
+如果session\_id合法，则正常处理APP请求。
 
