@@ -20,12 +20,11 @@ Maven是Apache组织中一个颇为成功的开源项目，主要服务于基于
 
 **GroupId**和**ArtifactId**被统称为“坐标”是为了保证项目唯一性而提出的。
 
-**GroupId：**是项目组织的唯一标识符。一般分为多个段，这里我只说两段，第一段为域，第二段为公司名称。域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织。举个apache公司的tomcat项目例子：这个项目的**GroupId**是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache，
+**GroupId：**是项目组织的唯一标识符。一般分为多个段，这里我只说两段，第一段为域，第二段为公司名称。域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织。举个apache公司的tomcat项目例子：这个项目的**GroupId**是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache。一般GroupId的命名方式都是xxx.xxx.xxx。
 
-**ArtifactId：**是项目的唯一标示符。在上面的例子中，ArtificialId是tomcat。
+**ArtifactId：**是项目的唯一标示符。在上面的例子中，ArtificialId是tomcat。一般ArtifactId的命名方式都是xx-xxx-xx。
 
 比如我创建一个项目，我一般会将**GroupId**设置为cn.lmj，cn表示域为中国，lmj是我个人姓名缩写，**ArtifactId**设置为test，表示你这个项目的名称是test。依照这个设置，在你创建Maven工程后，新建包的时候，包结构最好是**cn.lmj.test**打头的，如果有个StudentDao\[Dao层的\]，它的全路径就是**cn.lmj.test**.dao.StudentDao。
 
-**VersionId: **指定了tomcat项目的当前版本，如果后面标有SNAPSHOT意为快照，说明该项目还处于开发中，是不稳定的版本。   
-
+**VersionId: **指定了tomcat项目的当前版本，如果后面标有SNAPSHOT意为快照，说明该项目还处于开发中，是不稳定的版本。
 
