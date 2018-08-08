@@ -96,6 +96,7 @@
   * [Hadoop](fen-bu-shi-xi-tong/hadoop.md)
     * [HDFS](fen-bu-shi-xi-tong/hadoop/hdfs.md)
     * [YARN](fen-bu-shi-xi-tong/hadoop/yarn.md)
+    * [mac hadoop本地开发环境搭建](fen-bu-shi-xi-tong/hadoop/mac-hadoopben-di-kai-fa-huan-jing-da-jian.md)
     * [MapReduce](fen-bu-shi-xi-tong/hadoop/mapreduce.md)
     * [MapReduce经典操作](fen-bu-shi-xi-tong/hadoop/mapreducejing-dian-cao-zuo.md)
 * [设计模式](she-ji-mo-shi.md)
