@@ -67,6 +67,7 @@
   * [Sql 执行顺序](mysql/sql-zhi-xing-shun-xu.md)
   * [数据库事务](mysql/shu-ju-ku-shi-wu.md)
   * [Mysql事务实现方式](mysql/mysqlshi-wu-shi-xian-fang-shi.md)
+  * [Mysql Bin Log](mysql/mysql-bin-log.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
 * [Redis](redis.md)
   * [Redis rdb](redis/redis-rdb.md)
