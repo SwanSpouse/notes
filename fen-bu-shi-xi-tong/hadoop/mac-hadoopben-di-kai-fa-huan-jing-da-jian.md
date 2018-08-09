@@ -10,7 +10,9 @@ mvn assembly: assembly 能够执行成功，这样就打成了一个jar包。但
 
 #### hadoop环境
 
-我看brew里面有hadoop，我就先用brew install 了一下hadoop来试试。
+我看brew里面有hadoop，我就先用brew install 了一下hadoop来试试。安了好长时间没有安装上。所以我就打算从官网下载一个hadoop包来试试。
+
+
 
 
 

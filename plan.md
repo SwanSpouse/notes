@@ -34,7 +34,9 @@
     * 逃逸分析
     * channel gorountine
   * 4.2 Java
-    * Java虚拟机
+    * Java虚拟机，相关资料 (2018-08-09)
+      * https://blogs.oracle.com/poonam/understanding-cms-gc-logs
+      * https://blogs.oracle.com/poonam/understanding-g1-gc-logs
     * Java类加载机制。这部分也算是Java虚拟机里面的。
     * Java中的设计模式。
     * Java源码相关。
