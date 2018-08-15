@@ -4,76 +4,33 @@
 
 隔离性通过锁来实现。
 
-#### 重做日志
+#### redo
 
-InnoDB有buffer pool（简称bp）。bp是数据库页面的缓存，对InnoDB的任何修改操作都会首先在bp的page上进行，然后这样的页面将被标记为dirty并被放到专门的flush list上，后续将由master thread或专门的刷脏线程阶段性的将这些页面写入磁盘（disk or ssd）。这样的好处是避免每次写操作都操作磁盘导致大量的随机IO，阶段性的刷脏可以将多次对页面的修改merge成一次IO操作，同时异步写入也降低了访问的时延。然而，如果在dirty page还未刷入磁盘时，server非正常关闭，这些修改操作将会丢失，如果写入操作正在进行，甚至会由于损坏数据文件导致数据库不可用。为了避免上述问题的发生，Innodb将所有对页面的修改操作写入一个专门的文件，并在数据库启动时从此文件进行恢复操作，这个文件就是redo log file。这样的技术推迟了bp页面的刷新，从而提升了数据库的吞吐，有效的降低了访问时延。带来的问题是额外的写redo log操作的开销（顺序IO，当然很快），以及数据库启动时恢复操作所需的时间。
+在InnoDB存储引擎中，事务日志通过重做\(redo\)日志文件和InnoDB存储引擎的日志缓冲\(InnoDB Log Buffer\)来实现。当开始一个事务时，会记录该事务的一个LSN\(Log Sequence Number, 日志序列号\)；当事务执行时，会往InnoDB存储引擎的日志缓冲里插入事务日志；当事务提交时，必须将InnoDB存储引擎的日志缓冲写入磁盘\(默认的实现，即innodb\_flush\_log\_at\_trx\_commit=1\)。也就是在写数据前，需要先写日志。这种方式称为预写日志方式（Write-Ahead Logging, WAL）。
 
-redo和undo的作用都可以视为时一种恢复操作，redo恢复提交事务修改的页操作，而undo回滚行记录到某个特定的版本。因此两者记录的内容不同，redo通常是物理日志，记录的是页的物理修改操作。undo是逻辑日志，根据每行记录进行记录。
+InnoDB存储引擎通过预写日志的方式来保证事务的完整性。这意味着磁盘上存储的数据页和内存缓冲池中的页是不同步的，对于内存缓冲池中的页的修改，先是写入重做日志文件，然后再写磁盘，因此是一种一步的方式。可以通过命令SHOW ENGIN INNODB STATUS来查看当前磁盘和日志的差距。
 
-重做日志**用来实现事务的持久性\(Duration\)**。由两部分组成：
+#### undo
 
-* 一是内存中的**重做日志缓冲**（redo log buffer），其是易失的；
-* 二是**重做日志文件**（redo log file），其是持久的。
+重做日志记录了事务的行为，可以很好地通过其进行“重做” 。但是事务有时还需要撤销，这时就需要undo。undo与redo正好相反，对于数据库进行修改时，数据库不但会产生redo，而且还会产生一定量的undo，即使你执行的事务或者语句由于某种原因失败了，或者如果你用一条ROLLBACK语句请求回滚，就可以利用这些undo信息将数据回滚到修改之前的样子。与redo不同的是，redo存放在重做日志文件中，undo存放在数据库内部的一个特殊段\(segment\)中，这称为undo段\(undo segment\)，undo段位于共享表空间内。可以通过py\_innodb\_page\_info.py工具，来查看当前共享表空间中undo的数量。
 
-InnoDB是事务的存储引擎，其通过Force Log at Commit 机制实现事务的持久性，即当事务提交commit时，必须先将事务的所有日志写入到重做日志文件进行持久化，待事务COMMIT操作完成才算完成，这里的日志指重做日志，在InnoDB存储引擎中，由两部分组成，即redo log 和undo log. **redo log用来保证事务的持久性，undo log 用来帮主事务回滚及MVCC的功能。**redo log 基本是顺序写的，在数据库运行时不需要对redo log的文件进行读取操作。而undo log 是需要进行随机读写的
+我们通常对undo有这样的误解：undo用于将数据库物理地恢复到执行语句或者事务之前的样子——但事实并非如此。数据库只是逻辑地恢复到原来的样子，所有修改都被逻辑地取消，但是数据结构本身在回滚之后可能大不相同，应为在多用户并发系统中，可能会有数十、数百甚至数千个并发事务。数据库的主要任务就是协调对于数据记录的并发访问。如一个事务在修改当前一个页中的某几条记录，但同时还有别的事务在对同一个页面的另几条记录进行修改。因此，不能将一个页回滚到事务开始的样子，因为这样会影响其他事务正在进行的工作。
 
-#### log block
+#### 事务控制语句
 
-在InnoDB存储引擎中，重做日志都是以512字节进行存储的，这意味着重做日志缓存、重做日志文件块都是以块block的方式进行保存的，称为重做日志块\(redo log block\)每块的大小512字节。
+在Mysql命令的默认设置下，事务都是自动提交的，即执行SQL语句后就会马上执行COMMIT操作。因此开始一个事务，必须使用BEGIN,START TRANSACTION，或者执行SET AUTOCOMMIT=0，以禁用当前会话的自动提交。
 
-log buffer是由log block组成，在内部log buffer好似一个数组。
-
-#### log group {#log-group}
-
-重做日志组，其中有多个重做日志文件。它是一个逻辑上的概念。
-
-log buffer根据一定的规则将内存中的log block刷新到磁盘。  
-1.事务提交时  
-2.当log buffer中有一般的内存空间被使用  
-3.log checkpoint时
-
-#### 恢复 {#恢复}
-
-Innodb在启动时不管上次数据库运行时是否正常关闭，都会尝试进行恢复操作。重做日志是物理日志，因此恢复速度快。
-
-例如对于INSERT操作，其记录的时每个页上的变化。对于下面的表：  
-`CREATE TABLE t （a int， b int， primary key（a）， key（b））;`
-
-若执行SQL语句：  
-`INSERT INTO t SELECT 1,2；`
-
-由于需要对聚集索引页和辅助索引页进行操作，其记录的重做日志大致为：
-
-```sql
-page（2,3），offset 32， value 1,2#聚集索引
-page（2,4），offset 64，value 2#辅助索引
-```
-
-记录的是页的物理修改操作，若插入设计B+树的split，可能会有更多的页需要记录日志。
-
-#### undo基本概念 {#基本概念-1}
-
-重做日志记录了事务的行为，可以很好地通过其对页进行“重做”操作。但是事务有时还需要进行回滚操作，这时就需要undo。
-
-在对数据库进行修改时，innodb不但会产生redo，还会产生一定量的undo。如果用户执行事务或语句由于某种原因失败了，又或者用户用一条ROLLBACK语句请求回滚，就可以利用这些undo信息将数据回滚到修改之前的样子。
-
-用户执行insert 10w条记录，事务会导致分配一个新的段，即表空间会增大，但rollback，事务回滚，表空间大小不会改变。
-
-当innodb回滚时，实际执行先前相反的工作。
-
-INSERT操作，会执行delete。delete操作，会执行INSERT。update操作，会执行相反的update操作。
-
-#### undo 存储管理 {#undo-存储管理}
-
-innodb对undo同样采用段的方式。innodb有rollback segment，每个回滚段记录了1024个undo log segment。
-
-当事务提交时，innodb会做两件事情：  
-1.将undo log放入列表中，以供之后的purge操作  
-2.判断undo log所在的页是否可以重用，若可以分配给下个事务使用。
+* START TRANSACTION \| BEGIN ： 显示地开启一个事务。
+* COMMIT : COMMIT会提交你的事务，并使得已对数据库做的所有修改成为永久性的。
+* ROLLBACK：ROLLBACK会结束你的事务，并撤销正在进行的所有未提交的修改。
+* SAVEPOINT identifier: SAVEPOINT允许你在事务中创建一个保存点，一个事物中可以有多个SAVEPOINT。
+* RELEASE SAVEPOINT identifier:删除一个事务的保存点，当没有一个保存点执行这条语句时，会抛出一个异常。
+* ROLLBACK TO \[SAVEPOINT\] identifier： 把事务滚回到标记点，而不滚回在此标记点之前的任何工作。
+* SET TRANSACTION：用来设置事务的隔离级别。
 
 #### reference
 
-* [https://blog.csdn.net/qq\_27602093/article/details/77069765](https://blog.csdn.net/qq_27602093/article/details/77069765)
+* 《Mysql技术内幕：InnoDB存储引擎》
 
 
 
