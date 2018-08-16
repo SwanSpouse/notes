@@ -60,8 +60,9 @@
     * [hotspot](java/java-xu-ni-ji/hotspot.md)
     * [垃圾收集器](java/java-xu-ni-ji/la-ji-shou-ji-qi.md)
     * [类的加载](java/java-xu-ni-ji/lei-de-jia-zai.md)
-  * Java基础
+  * [Java基础](java/javaji-chu.md)
     * [线程的生命周期及状态转换](java/xian-cheng-de-sheng-ming-zhou-qi-ji-zhuang-tai-zhuan-huan.md)
+    * fail-fast机制
 * [Mysql](mysql.md)
   * [InnoDB锁](mysql/innodbsuo.md)
   * [数据库索引](mysql/shu-ju-ku-suo-yin.md)
