@@ -1,5 +1,17 @@
 #### tcmalloc
 
+#### 系统内存管理
+
+内存管理可以分为三个层次，自底向上分别是：
+
+*  操作系统层级: 操作系统内核的内存管理
+
+*  语言层级：glibc层使用系统调用维护的内存管理算法
+
+*  应用层级：应用程序从glibc动态分配内存后，根据应用程序本身的程序特性进行优化， 比如使用引用计数std::shared\_ptr，apache的内存池方式等等。当然应用程序也可以直接使用系统调用从内核分配内存，自己根据程序特性来维护内存，但是会大大增加开发成本。
+
+#### tcmalloc介绍
+
 tcmalloc是Google开源的一个内存管理库，常见的内存分配器还有glibc的ptmalloc和google的jemalloc。相比于ptmalloc，tcmalloc性能更好，特别适用于高并发场景。 作为glibc malloc的替代品。目前已经在chrome、safari等知名软件中运用。
 
 根据官方测试报告，ptmalloc在一台2.8GHz的P4机器上（对于小对象）执行一次malloc及free大约需要300纳秒。而tcmalloc的版本同样的操作大约只需要50纳秒。
