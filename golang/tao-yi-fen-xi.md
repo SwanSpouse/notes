@@ -40,7 +40,7 @@ In the current compilers, if a variable has its address taken, that variable is 
 
 * Go 逃逸分析的缺陷: [https://studygolang.com/articles/12396?fr=sidebar](https://studygolang.com/articles/12396?fr=sidebar)
 
-* http://www.voidcn.com/article/p-qznjjiyo-bnb.html
+* [http://www.voidcn.com/article/p-qznjjiyo-bnb.html](http://www.voidcn.com/article/p-qznjjiyo-bnb.html)
 
 * [https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html](https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html)
 
