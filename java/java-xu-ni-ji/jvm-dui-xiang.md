@@ -69,8 +69,8 @@ Java需要通过栈上的reference数据来操作堆上的具体对象。访问�
 * 引用计数法的缺陷
 
   ```java
-    objA.instance = objB.instance;
-    objB.instance = objA.instance;
+    objA.instance = objB;
+    objB.instance = objA;
   ```
 
   * 实际上两个对象已经不可能再被访问，但是它们相互引用着对方，导致他们的引用计数都不为0。于是引用计数器无法通知GC收集器回收它们。
