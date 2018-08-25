@@ -45,9 +45,7 @@
 
 ##### 堆空间的内存细分：
 
-```
-![](http://images.cnitblog.com/i/1408/201403/282104482503631.png)
-```
+![heap](http://images.cnitblog.com/i/1408/201403/282104482503631.png)
 
 * **Young Generation**：新生代，包含了Eden、S0（FromSurvivor）、S1（ToSurvivor）；由于新生代上的对象存活时间很短暂，所以此区一般采用标记-清理算法GC.
 
