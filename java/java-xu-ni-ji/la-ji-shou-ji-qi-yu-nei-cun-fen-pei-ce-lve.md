@@ -17,7 +17,7 @@
 
 现在的商业虚拟机都是使用这种方法来回收新生代（Eden Survivor）。
 
-![](http://ww1.sinaimg.cn/large/6944d767gw1f1jvnkc54cj20h60a5aas.jpg)
+![](http://ww3.sinaimg.cn/large/6944d767gw1f1jvnkic28j20hh0aejs2.jpg)
 
 ### 标记整理算法（Mark-Compact）
 
@@ -25,7 +25,7 @@
 
 主要用于老年代
 
-![](http://ww3.sinaimg.cn/large/6944d767gw1f1jvnkic28j20hh0aejs2.jpg)
+![](http://ww1.sinaimg.cn/large/6944d767gw1f1jvnkc54cj20h60a5aas.jpg)
 
 #### 三色标记算法 \(Tri-color marking\)
 
