@@ -71,6 +71,11 @@
   * [Java基础](java/javaji-chu.md)
     * [线程的生命周期及状态转换](java/xian-cheng-de-sheng-ming-zhou-qi-ji-zhuang-tai-zhuan-huan.md)
     * fail-fast机制
+  * [Java 多线程](java/java-duo-xian-cheng.md)
+    * Java锁相关
+  * [Java 内存模型](java/java-nei-cun-mo-xing.md)
+    * [volatile](java/java-nei-cun-mo-xing/volatile.md)
+    * [Java CAS操作](java/java-nei-cun-mo-xing/java-cascao-zuo.md)
 * [Redis](redis.md)
   * [Redis rdb](redis/redis-rdb.md)
   * [Sentinel](redis/sentinel.md)
