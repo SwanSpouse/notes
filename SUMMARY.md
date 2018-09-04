@@ -74,8 +74,10 @@
   * [Java 多线程](java/java-duo-xian-cheng.md)
     * Java锁相关
   * [Java 内存模型](java/java-nei-cun-mo-xing.md)
-    * [volatile](java/java-nei-cun-mo-xing/volatile.md)
+    * [Java内存模型](java/java-nei-cun-mo-xing/javanei-cun-mo-xing.md)
+    * [原子性&可见性&有序性](java/java-nei-cun-mo-xing/yuan-zi-602726-ke-jian-602726-you-xu-xing.md)
     * [Java CAS操作](java/java-nei-cun-mo-xing/java-cascao-zuo.md)
+    * [volatile](java/java-nei-cun-mo-xing/volatile.md)
     * [happen-before](java/java-nei-cun-mo-xing/happen-before.md)
 * [Redis](redis.md)
   * [Redis rdb](redis/redis-rdb.md)

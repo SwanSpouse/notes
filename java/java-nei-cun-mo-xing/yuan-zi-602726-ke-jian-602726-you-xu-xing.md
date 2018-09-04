@@ -1,0 +1,16 @@
+### 原子性、可见性、有序性
+
+Java内存模型要求lock、unlock、read、load、assign、use、store、write这8个操作都具有原子性，但对于64位的数据类型\(long和double\)，在模型中特别定义了一条相对宽松的规定：允许虚拟机将没有被volatile修饰的64位数据的读写操作划分为两次32位的操作来进行，即允许虚拟机实现选择可以不保证64位数据类型的load、store、read和write这4个操作的原子性，这点就是所谓的long和double的非原子协定（Nonatomic Treatment of double and long Variables）。
+
+如果有多个线程共享一个并未声明为volatile的long或double类型的变量，并且同时对它们进行读取和修改操作。那么某些线程可能会读取到一个既非原值，也不是其他线程修改值的代表了“半个变量”的数值。
+
+不过这种读取到“半个变量“的情况非常罕见（在目前商用Java虚拟机中不会出现），因为Java内存模型虽然允许虚拟机不把long和double变量的读写实现成原子操作，但允许虚拟机选择把这些操作实现为原子性的操作，而且还”强烈建议“虚拟机这样实现。在实际开发中，目前各种平台下的商用虚拟机几乎都选择把64位数据的读写操作作为原子操作来对待，因此我们在编写代码时一般不需要把用到的long和double变量专门声明为volatile。
+
+#### 原子性 Atomicity
+
+由Java内存模型来直接保证的原子性变量操作包括read、load、assign、use、store和write。我们大致可以认为基本数据类型的访问读写是具备原子性的。
+
+如果应用场景需要一个更大范围的原子性保证，Java内存模型还提供了lock和unlock操作来满足这种需求，经管虚拟机未把lock和unlock操作直接开放给用户使用，但是却提供了更高层次的字节码指令monitorenter和monitorexit来隐式地使用这两个操作，这两个字节码指令反映到Java代码中就是同步块——synchronized关键字，因此在synchronized块之间的操作也具备原子性。
+
+
+
