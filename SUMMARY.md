@@ -76,6 +76,7 @@
   * [Java 内存模型](java/java-nei-cun-mo-xing.md)
     * [volatile](java/java-nei-cun-mo-xing/volatile.md)
     * [Java CAS操作](java/java-nei-cun-mo-xing/java-cascao-zuo.md)
+    * [happen-before](java/java-nei-cun-mo-xing/happen-before.md)
 * [Redis](redis.md)
   * [Redis rdb](redis/redis-rdb.md)
   * [Sentinel](redis/sentinel.md)
