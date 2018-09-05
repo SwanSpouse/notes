@@ -79,6 +79,7 @@
     * [Java CAS操作](java/java-nei-cun-mo-xing/java-cascao-zuo.md)
     * [volatile](java/java-nei-cun-mo-xing/volatile.md)
     * [happen-before](java/java-nei-cun-mo-xing/happen-before.md)
+    * [Java线程调度](java/java-nei-cun-mo-xing/javaxian-cheng-diao-du.md)
 * [Redis](redis.md)
   * [Redis rdb](redis/redis-rdb.md)
   * [Sentinel](redis/sentinel.md)
