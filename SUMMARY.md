@@ -61,6 +61,9 @@
   * [Mysql Bin Log](mysql/mysql-bin-log.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
 * [Java](java.md)
+  * [Java基础](java/javaji-chu.md)
+    * [线程的生命周期及状态转换](java/xian-cheng-de-sheng-ming-zhou-qi-ji-zhuang-tai-zhuan-huan.md)
+    * fail-fast机制
   * [Java 虚拟机](java/java-xu-ni-ji.md)
     * [jvm 内存区域](java/java-xu-ni-ji/java-jvm.md)
     * [jvm 对象](java/java-xu-ni-ji/jvm-dui-xiang.md)
@@ -68,9 +71,6 @@
     * [hotspot](java/java-xu-ni-ji/hotspot.md)
     * [垃圾收集器](java/java-xu-ni-ji/la-ji-shou-ji-qi.md)
     * [类的加载](java/java-xu-ni-ji/lei-de-jia-zai.md)
-  * [Java基础](java/javaji-chu.md)
-    * [线程的生命周期及状态转换](java/xian-cheng-de-sheng-ming-zhou-qi-ji-zhuang-tai-zhuan-huan.md)
-    * fail-fast机制
   * [Java 多线程](java/java-duo-xian-cheng.md)
     * Java锁相关
   * [Java 内存模型](java/java-nei-cun-mo-xing.md)
