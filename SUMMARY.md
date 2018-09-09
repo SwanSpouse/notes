@@ -102,6 +102,7 @@
 * [计算机网络](ji-suan-ji-wang-luo.md)
   * [基本概念](ji-suan-ji-wang-luo/ji-ben-gai-nian.md)
   * [TCP](ji-suan-ji-wang-luo/tcp.md)
+  * [HTTP Content-Type](ji-suan-ji-wang-luo/http-content-type.md)
 * [大数据相关](fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
   * [分布式系统概论](fen-bu-shi-xi-tong/fen-bu-shi-xi-tong-gai-lun.md)
