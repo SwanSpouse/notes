@@ -73,13 +73,13 @@
 | 可重复读（repeatable-read） | 否 | 否 | 是 |
 | 串行化（serializable） | 否 | 否 | 否 |
 
-read uncommitted : 使用查询语句不会加锁，可能会读到未提交的行（Dirty Read）；
+**read uncommitted : **使用查询语句不会加锁，可能会读到未提交的行（Dirty Read）；
 
-read committed: 只对记录加记录锁，而不会在记录之间加间隙锁，所以允许新的记录插入到被锁定记录的附近，所以再多次使用查询语句时，可能得到不同的结果（Non-Repeatable Read）；
+**read committed: **只对记录加记录锁，而不会在记录之间加间隙锁，所以允许新的记录插入到被锁定记录的附近，所以再多次使用查询语句时，可能得到不同的结果（Non-Repeatable Read）；
 
-repeatable-read: 多次读取同一范围的数据会返回第一次查询的快照，不会返回不同的数据行，但是可能发生幻读（Phantom Read）；
+**repeatable-read: **多次读取同一范围的数据会返回第一次查询的快照，不会返回不同的数据行，但是可能发生幻读（Phantom Read）；
 
-serializable: InnoDB 隐式地将全部的查询语句加上共享锁，解决了幻读的问题；
+**serializable:** InnoDB 隐式地将全部的查询语句加上共享锁，解决了幻读的问题；
 
 mysql默认的事务隔离级别为repeatable-read
 
