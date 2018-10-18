@@ -1,6 +1,6 @@
 ### **背景**
 
-Paxos: 发音 帕克索斯 https://zh.forvo.com/word/paxos/
+Paxos: 发音 帕克索斯 [https://zh.forvo.com/word/paxos/](https://zh.forvo.com/word/paxos/)
 
 Paxos算法是Lamport于1990年提出的一种基于消息传递的一致性算法。由于算法难以理解起初并没有引起人们的重视，使Lamport在八年后重新发表到TOCS上。即便如此paxos算法还是没有得到重视，2001年Lamport用可读性比较强的叙述性语言给出算法描述。可见Lamport对paxos算法情有独钟。近几年paxos算法的普遍使用也证明它在分布式一致性算法中的重要地位。06年google的三篇论文初现“云”的端倪，其中的chubby锁服务使用paxos作为chubby cell中的一致性算法，paxos的人气从此一路狂飙。
 
@@ -37,6 +37,7 @@ Paxos 算法解决的问题是一个分布式系统如何就某个值（决议�
 ### reference
 
 * [http://chuansong.me/n/1050231](http://chuansong.me/n/1050231)
+* https://medium.com/coinmonks/paxos-made-simple-3b83c05aac37
 
 
 
