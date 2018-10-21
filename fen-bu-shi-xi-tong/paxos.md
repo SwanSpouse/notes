@@ -20,7 +20,7 @@ Paxos 算法解决的问题是一个分布式系统如何就某个值（决议�
 
 1.最终会批准某个被提议的值。
 
-2.一个值被批准了，其他服务器最终会学习到这个值。
+2.一个值被批准了，其他服务器最终会学习到这个值。这个原则能够保证的话就没有了活锁的问题。
 
 ### Paxos的两个组件
 
@@ -37,7 +37,7 @@ Paxos 算法解决的问题是一个分布式系统如何就某个值（决议�
 ### reference
 
 * [http://chuansong.me/n/1050231](http://chuansong.me/n/1050231)
-* https://medium.com/coinmonks/paxos-made-simple-3b83c05aac37
+* [https://medium.com/coinmonks/paxos-made-simple-3b83c05aac37](https://medium.com/coinmonks/paxos-made-simple-3b83c05aac37)
 
 
 
