@@ -117,7 +117,7 @@
     * [MapReduce](fen-bu-shi-xi-tong/hadoop/mapreduce.md)
     * [MapReduce经典操作](fen-bu-shi-xi-tong/hadoop/mapreducejing-dian-cao-zuo.md)
   * [Paxos](fen-bu-shi-xi-tong/paxos.md)
-  * [拜占庭问题](fen-bu-shi-xi-tong/bai-zhan-ting-wen-ti.md)
+  * [拜占庭将军问题](fen-bu-shi-xi-tong/bai-zhan-ting-wen-ti.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
