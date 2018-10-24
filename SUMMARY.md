@@ -122,6 +122,8 @@
     * [mac hadoop本地开发环境搭建](fen-bu-shi-xi-tong/hadoop/mac-hadoopben-di-kai-fa-huan-jing-da-jian.md)
     * [MapReduce](fen-bu-shi-xi-tong/hadoop/mapreduce.md)
     * [MapReduce经典操作](fen-bu-shi-xi-tong/hadoop/mapreducejing-dian-cao-zuo.md)
+  * [消息队列](fen-bu-shi-xi-tong/xiao-xi-dui-lie.md)
+    * [NSQ](fen-bu-shi-xi-tong/xiao-xi-dui-lie/nsq.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
@@ -140,3 +142,4 @@
   * [App保持登录](ye-wu-luo-ji/appbao-chi-deng-lu.md)
   * [URL参数的Sign签名](ye-wu-luo-ji/urlcan-shu-de-sign-qian-ming.md)
 * [学习计划](plan.md)
+
