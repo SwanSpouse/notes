@@ -4,13 +4,16 @@
 
 来自Stanford的新的分布式协议研究称为Raft，它是一个为真实世界应用建立的协议，主要注重协议的落地性和可理解性。
 
-#### reference 
 
-* https://www.jdon.com/artichect/raft.html
-* https://raft.github.io/
 
-  
 
+
+
+
+#### reference
+
+* [https://www.jdon.com/artichect/raft.html](https://www.jdon.com/artichect/raft.html)
+* [https://raft.github.io/](https://raft.github.io/)
 
 
 
