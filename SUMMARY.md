@@ -107,6 +107,7 @@
   * [HTTP GET和POST区别](ji-suan-ji-wang-luo/http-gethe-post-qu-bie.md)
   * [Socket](ji-suan-ji-wang-luo/socket.md)
 * [大数据相关](fen-bu-shi-xi-tong.md)
+  * [分布式系统](fen-bu-shi-xi-tong/fen-bu-shi-xi-tong.md)
   * [分布式协议](fen-bu-shi-xi-tong/fen-bu-shi-xie-yi.md)
   * [2PC](fen-bu-shi-xi-tong/2pc.md)
   * [3PC](fen-bu-shi-xi-tong/3pc.md)
@@ -121,7 +122,7 @@
     * [MapReduce经典操作](fen-bu-shi-xi-tong/hadoop/mapreducejing-dian-cao-zuo.md)
   * [拜占庭将军问题](fen-bu-shi-xi-tong/bai-zhan-ting-wen-ti.md)
   * [Paxos](fen-bu-shi-xi-tong/paxos.md)
-  * [Raft](fen-bu-shi-xi-tong/raft.md)
+  * 分布式系统
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
