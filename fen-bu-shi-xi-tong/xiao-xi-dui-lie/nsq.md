@@ -1,6 +1,6 @@
 ### NSQ
 
-nsq 有三个必要的组建nsqd、nsqlookupd、nsqadmin 其中nsqd 和 nsqlookup是必须部署的 下面我们一一介绍。
+nsq 有三个必要的组建nsqd、nsqlookupd、nsqadmin 其中nsqd 和 nsqlookup是必须部署的 下面我们一一介绍。
 
 #### **nsqd**
 
@@ -18,7 +18,12 @@ nsqd --lookupd-tcp-address=127.0.0.1:4160 --broadcast-address=127.0.0.1 -tcp-add
 
 #### nsqlookupd
 
-主要负责服务发现 负责nsqd的心跳、状态监测，给客户端、nsqadmin提供nsqd地址与状态
+主要负责服务发现 负责nsqd的心跳、状态监测，给客户端、nsqadmin提供nsqd地址与状态。是整个集群的总控室，包括服务发现和节点拓扑信息的管理。nsqlookupd有以下特点：
+
+1. 唯一性,在集群中的节点只能指向唯一的nsqlookupd服务
+2. 去中心化,即使nsqlookupd崩溃，也会不影响正在运行的nsqd服务
+3. 充当nsqd和naqadmin信息交互的中间件
+4. 提供一个http查询服务，给客户端定时更新nsqd的地址目录
 
 #### nsqadmin
 
@@ -28,9 +33,9 @@ nsqadmin是一个web管理界面 启动方式如下：
 nsqadmin --lookupd-http-address=127.0.0.1:4161
 ```
 
-#### reference 
+#### reference
 
-* http://kuangjue.com/article/250
+* [http://kuangjue.com/article/250](http://kuangjue.com/article/250)
 
 
 
