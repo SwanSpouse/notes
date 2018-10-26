@@ -1,7 +1,5 @@
 ### NSQ
 
-
-
 #### features
 
 * **Distributed : **NSQ提供了分布式的，去中心化，且没有单点故障的拓扑结构，稳定的消息传输发布保障，能够具有高容错和HA（高可用）特性。
@@ -44,10 +42,49 @@ nsqadmin是一个web管理界面 启动方式如下：
 nsqadmin --lookupd-http-address=127.0.0.1:4161
 ```
 
+#### Topic 
+
+一个topic就是程序发布消息的一个逻辑键，当程序第一次发布消息时就会创建topic。
+
+#### Channels
+
+channel与消费者相关，是消费者之间的负载均衡，channel在某种意义上来说是一个“队列”。每当一个发布者发送一条消息到一个topic，消息会被复制到所有消费者连接的channel上，消费者通过这个特殊的channel读取消息，实际上，在消费者第一次订阅时就会创建channel。Channel会将消息进行排列，如果没有消费者读取消息，消息首先会在内存中排队，当量太大时就会被保存到磁盘中。
+
+#### Message
+
+消息构成了数据流的中坚力量，消费者可以选择结束消息，表明它们正在被正常处理，或者重新将他们排队待到后面再进行处理。每个消息包含传递尝试的次数，当消息传递超过一定的阀值次数时，我们应该放弃这些消息，或者作为额外消息进行处理。
+
+### 常用工具类
+
+* nsq\_to \_file：消费指定的话题（topic）/通道（channel），并写到文件中，有选择的滚动和/或压缩文件。
+
+* nsq\_to \_http：消费指定的话题（topic）/通道（channel）和执行 HTTP requests \(GET/POST\) 到指定的端点。
+
+* nsq\_to \_nsq：消费者指定的话题/通道和重发布消息到目的地 nsqd 通过 TCP。
+
+### 拓扑结构
+
+NSQ推荐通过他们相应的nsqd实例使用协同定位发布者，这意味着即使面对网络分区，消息也会被保存在本地，直到它们被一个消费者读取。更重要的是，发布者不必去发现其他的nsqd节点，他们总是可以向本地实例发布消息。
+
+  
+![](/assets/nsq拓扑结构.png)
+
+首先，一个发布者向它的本地nsqd发送消息，要做到这点，首先要先打开一个连接，然后发送一个包含topic和消息主体的发布命令，在这种情况下，我们将消息发布到事件topic上以分散到我们不同的worker中。
+
+事件topic会复制这些消息并且在每一个连接topic的channel上进行排队，在我们的案例中，有三个channel，它们其中之一作为档案channel。消费者会获取这些消息并且上传到S3。
+
+![](/assets/nsqd.png)
+
+每个channel的消息都会进行排队，直到一个worker把他们消费，如果此队列超出了内存限制，消息将会被写入到磁盘中。Nsqd节点首先会向nsqlookup广播他们的位置信息，一旦它们注册成功，worker将会从nsqlookup服务器节点上发现所有包含事件topic的nsqd节点。
+
+![](/assets/nsqlookupd.png)
+
+然后每个worker向每个nsqd主机进行订阅操作，用于表明worker已经准备好接受消息了。这里我们不需要一个完整的连通图，但我们必须要保证每个单独的nsqd实例拥有足够的消费者去消费它们的消息，否则channel会被队列堆着。
+
 #### reference
 
 * [http://kuangjue.com/article/250](http://kuangjue.com/article/250)
-* https://mp.weixin.qq.com/s/lrbIx88Z1HwWNTO\_5aABJQ
+* [https://mp.weixin.qq.com/s/lrbIx88Z1HwWNTO\_5aABJQ](https://mp.weixin.qq.com/s/lrbIx88Z1HwWNTO_5aABJQ)
 
 
 
