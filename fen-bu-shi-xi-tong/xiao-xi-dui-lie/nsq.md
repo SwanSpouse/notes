@@ -1,5 +1,16 @@
 ### NSQ
 
+
+
+#### features
+
+* **Distributed : **NSQ提供了分布式的，去中心化，且没有单点故障的拓扑结构，稳定的消息传输发布保障，能够具有高容错和HA（高可用）特性。
+* **Scalable易于扩展:**NSQ支持水平扩展，没有中心化的brokers。内置的发现服务简化了在集群中增加节点。同时支持pub-sub和load-balanced 的消息分发。
+* **Ops Friendly **NSQ非常容易配置和部署，生来就绑定了一个管理界面。二进制包没有运行时依赖。官方有Docker image
+* **Integrated高度集成 **官方的 Go 和 Python库都有提供。而且为大多数语言提供了库。
+
+#### 组件
+
 nsq 有三个必要的组建nsqd、nsqlookupd、nsqadmin 其中nsqd 和 nsqlookup是必须部署的 下面我们一一介绍。
 
 #### **nsqd**
@@ -36,6 +47,7 @@ nsqadmin --lookupd-http-address=127.0.0.1:4161
 #### reference
 
 * [http://kuangjue.com/article/250](http://kuangjue.com/article/250)
+* https://mp.weixin.qq.com/s/lrbIx88Z1HwWNTO\_5aABJQ
 
 
 
