@@ -16,12 +16,24 @@
 
 所以，再多引入一个阶段之后，3PC解决了2PC中存在的那种由于协调者和参与者同时挂掉有可能导致的数据一致性问题。
 
+
+#### 3PC好于2PC的例子
+
+这里举一个两阶段造成数据不一致的例子：比如说有cordinator、cohort1、cohort2三个参与者
+
+首先，请求阶段，cordinator向cohort1和cohort2 发送请求询问是否有事务提交，cohort1和cohort2成功发送请求，有事务需要进行提交。
+
+然后，提交阶段，cordinator向cohort1和cohort2 发送commit命令。此时cordinator宕机，cohort1收到commit命令，成功提交事务之后宕机，cohort2因网络原因没有收到commit请求。此时，cordinator1恢复，向所有节点查询事务提交状态，cohort2回复事务未提交。cordinator、cohort达成一致，同步状态后，继续接受请求。
+
+处理并接受了事务2、3、4等一些列请求。此时 cohort1恢复，和cordinator同步状态之后发现数据不一致，且无法进行恢复。数据不一致。
+
+3PC好就好在，当cordinator进行恢复的时候，如果有一个cohort的状态是preCommit或者commit，那么就执行commit操作；否则abort。
+
 #### 3PC存在的问题
 
 在doCommit阶段，如果参与者无法及时接收到来自协调者的doCommit或者rebort请求时，会在等待超时之后，会继续进行事务的提交。
 
 所以，由于网络原因，协调者发送的abort响应没有及时被参与者接收到，那么参与者在等待超时之后执行了commit操作。这样就和其他接到abort命令并执行回滚的参与者之间存在数据不一致的情况。
-
 
 
 #### reference 
