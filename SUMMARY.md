@@ -53,6 +53,7 @@
       * [各版本的golang gc](golang/golang-gc/ge-ban-ben-de-golang-gc.md)
   * [Golang 调试工具](golang/golangdiao-shi-gong-ju.md)
     * [调度器追踪](golang/golangdiao-shi-gong-ju/nei-cun-fen-xi-qi.md)
+    * [pprof](golang/golangdiao-shi-gong-ju/pprof.md)
 * [Mysql](mysql.md)
   * [InnoDB锁](mysql/innodbsuo.md)
   * [数据库索引](mysql/shu-ju-ku-suo-yin.md)
