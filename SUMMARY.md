@@ -2,6 +2,8 @@
 
 * [Introduction](README.md)
 * [计算机基础](suan-fa.md)
+  * 编译原理
+    * [lex&yacc](lexandyacc.md)
   * [HashCode](hash-code.md)
   * [字符编码ASCII & Unicode &UTF-8](zi-fu-bian-ma-ascii-andunicode-and-utf-8.md)
   * [布隆过滤器](bu-long-guo-lv-qi.md)
