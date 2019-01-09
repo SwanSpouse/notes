@@ -55,7 +55,7 @@ Paxos算法类似于两阶段提提交，其算法执行过程分为两个阶段
 prepare阶段
 
 * 每个server向proposer发送消息，表示自己要当leader，假设proposer收到消息的时间不一样，顺序是： proposer2 -&gt; proposer1 -&gt; proposer3，消息编号依次为1、2、3。 
-* 紧接着，proposer将消息发给acceptor中超过半数的子成员\(这里选择两个\)，如图所示，proposer2向acceptor2和acceptor3发送编号为1的消息，proposer1向acceptor1和accepto2发送编号为2的消息，proposer3向acceptor2和acceptor3发送编号为3的消息。 
+* 紧接着，proposer将消息发给acceptor中超过半数的子成员\(这里选择两个\)，proposer2向acceptor2和acceptor3发送编号为1的消息，proposer1向acceptor1和accepto2发送编号为2的消息，proposer3向acceptor2和acceptor3发送编号为3的消息。 
 * 假设这时proposer1发送的消息先到达acceptor1和acceptor2，它们都没有接收过请求，所以接收该请求并返回【pok，null，null】给proposer1，同时acceptor1和acceptor2承诺不再接受编号小于2的请求； 
 * 紧接着，proposer2的消息到达acceptor2和acceptor3，acceptor3没有接受过请求，所以返回proposer2 【pok，null，null】，acceptor3并承诺不再接受编号小于1的消息。而acceptor2已经接受proposer1的请求并承诺不再接收编号小于2的请求，所以acceptor2拒绝proposer2的请求； 
 * 最后，proposer3的消息到达acceptor2和acceptor3，它们都接受过提议，但编号3的消息大于acceptor2已接受的2和acceptor3已接受的1，所以他们都接受该提议，并返回proposer3 【pok，null，null】； 
@@ -82,14 +82,14 @@ accept阶段
 
 ### Learner学习被选定的value（第二阶段accept的）
 
-### ![](/assets/Paxos learner.png) 
+### ![](/assets/Paxos learner.png)
 
 ### Paxos算法的活锁问题（保证算法活性）
 
 上边我们介绍了Paxos的算法逻辑，但在算法运行过程中，可能还会存在一种极端情况，当有两个proposer依次提出一系列编号递增的议案，那么会陷入死循环，无法完成第二阶段，也就是无法选定一个提案。如下图：
 
-![](/assets/活锁.png)  
-  
+![](/assets/活锁.png)
+
 通过选取主Proposer，就可以保证Paxos算法的活性。选择一个主Proposer，并规定只有主Proposer才能提出议案。这样一来，只要主Proposer和过半的Acceptor能够正常进行网络通信，那么肯定会有一个提案被批准（第二阶段的accept），则可以解决死循环导致的活锁问题。
 
 ### reference
