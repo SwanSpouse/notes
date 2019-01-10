@@ -127,6 +127,7 @@
     * [2PC和3PC区别](fen-bu-shi-xi-tong/2pche-3pc-qu-bie.md)
     * [Raft](fen-bu-shi-xi-tong/raft.md)
     * [LSM](fen-bu-shi-xi-tong/lsm.md)
+    * [Lease机制](fen-bu-shi-xi-tong/leaseji-zhi.md)
   * [Hadoop](fen-bu-shi-xi-tong/hadoop.md)
     * [HDFS](fen-bu-shi-xi-tong/hadoop/hdfs.md)
     * [YARN](fen-bu-shi-xi-tong/hadoop/yarn.md)
