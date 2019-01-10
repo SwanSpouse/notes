@@ -128,6 +128,7 @@
     * [Raft](fen-bu-shi-xi-tong/raft.md)
     * [LSM](fen-bu-shi-xi-tong/lsm.md)
     * [Lease机制](fen-bu-shi-xi-tong/leaseji-zhi.md)
+    * [Gossip](fen-bu-shi-xi-tong/gossip.md)
   * [Hadoop](fen-bu-shi-xi-tong/hadoop.md)
     * [HDFS](fen-bu-shi-xi-tong/hadoop/hdfs.md)
     * [YARN](fen-bu-shi-xi-tong/hadoop/yarn.md)
