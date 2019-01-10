@@ -4,26 +4,18 @@
 
 来自Stanford的新的分布式协议研究称为Raft，它是一个为真实世界应用建立的协议，主要注重协议的落地性和可理解性。
 
-Raft 共识算法的优点在于可以在高效的解决分布式系统中各个节点日志内容一致性问题的同时，也使得集群具备一定的容错能力。即使集群中出现部分节点故障、网络故障等问题，仍可保证其余大多数节点正确的步进。甚至当更多的节点（一般来说超过集群节点总数的一半）出现故障而导致集群不可用时，依然可以保证节点中的数据不会出现错误的结果。
-
-#### 集群的建立与状态机
-
-Raft 集群中的每个节点都可以根据集群运行的情况在三种状态间切换：follower, candidate 与 leader。leader 向 follower 同步日志，follower 只从 leader 处获取日志。在节点初始启动时，节点的 raft 状态机将处于 follower 状态并被设定一个 election timeout，如果在这一时间周期内没有收到来自 leader 的 heartbeat，节点将发起选举：节点在将自己的状态切换为 candidate 之后，向集群中其它 follower 节点发送请求，询问其是否选举自己成为 leader。当收到来自集群中过半数节点的接受投票后，节点即成为 leader，开始接收保存 client 的数据并向其它的 follower 节点同步日志。leader 节点依靠定时向 follower 发送 heartbeat 来保持其地位。任何时候如果其它 follower 在 election timeout 期间都没有收到来自 leader 的 heartbeat，同样会将自己的状态切换为 candidate 并发起选举。每成功选举一次，新 leader 的步进数都会比之前 leader 的步进数大 1。
-
 在Raft系统中，任何时候一个服务器可以扮演下面的角色之一：
 
 * 领导者 Leader：处理所有客户端交互、日志复制等动作，一般一次只有一个领导者。
 * 选民Follower：类似选民，完全被动的角色，这样的服务器等待被通知投票。
 * 候选人Candidate：候选人就是在选举过程中提名自己的实体，一旦选举成功，则成为领导者。
 
-#### Leader选举
-
 Raft算法分为两个阶段：首先是选举过程，然后在选举出来的领导人带领下进行正常的操作，比如日志复制等。
 
 * 1.任何一个服务器都可以成为一个Candidate，它向其他的服务器（Follower）发出要求选举自己的请求。
 * 2.其他服务器同意了，回复OK（同意）指令
 
-注意如果在这个过程中，有一个Follower宕机，没有收到请求选举的要求，候选者可以自己选自己，只要达到N/2 + 1 的大多数票，候选人还是可以成为Leader的。
+注意如果在这个过程中，有一个Follower宕机，没有收到请求选举的请求，候选者可以自己选自己，只要达到N/2 + 1 的大多数票，候选人还是可以成为Leader的。
 
 * 3.这样这个Candidate就成为Leader，它可以向Follower发出要执行具体操作动作的指令，比如进行日志复制。
 
@@ -55,7 +47,6 @@ Splite Vote是因为如果同时有两个Candidate向大家邀票，这时通过
 
 * [https://www.jdon.com/artichect/raft.html](https://www.jdon.com/artichect/raft.html)
 * [https://raft.github.io/](https://raft.github.io/)
-* [https://www.infoq.cn/article/coreos-analyse-etcd](https://www.infoq.cn/article/coreos-analyse-etcd)
 
 
 
