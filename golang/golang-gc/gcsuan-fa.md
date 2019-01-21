@@ -14,9 +14,6 @@
 6. 通过write-barrier检测对象有变化，重复以上操作
 7. 收集所有白色对象（垃圾）
 
-![](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/jvm/tri-color_garbage_collection.gif?raw=true)
-
-过程如上图所示。
 
 这个算法可以实现 "on-the-fly"，也就是在程序执行的同时进行收集，并不需要暂停整个程序。
 
