@@ -96,6 +96,7 @@
   * [Redis事件机制](redis/redisshi-jian-ji-zhi.md)
   * [一次完整的客户端与服务器连接事件示例](redis/yi-ci-wan-zheng-de-ke-hu-duan-yu-fu-wu-qi-lian-jie-shi-jian-shi-li.md)
   * [缓存穿透缓存雪崩](redis/huan-cun-chuan-tou-huan-cun-xue-beng.md)
+  * [Redis Pipeline](redis/redis-pipeline.md)
 * [项目集成](xiang-mu-ji-cheng.md)
   * [SSO](xiang-mu-ji-cheng/sso.md)
   * [OAuth2](xiang-mu-ji-cheng/oauth2.md)
