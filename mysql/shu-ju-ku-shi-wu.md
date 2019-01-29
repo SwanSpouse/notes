@@ -6,8 +6,6 @@
 
 原子性是基础，隔离性是手段，持久性是目的，真正的老大就是一致性。
 
-![transaction](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/database/transaction.png?raw=true)
-
 #### 原子性
 
 原子性：数据库将事务中的多个操作当做一个整体来执行，服务器要么就执行事务中的所有操作，要么一个操作也不执行。
