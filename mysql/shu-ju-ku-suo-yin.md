@@ -1,7 +1,3 @@
-### MySql锁相关
-
-![mysql lock](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/database/mysql_lock.png?raw=true)
-
 ### MySql索引
 
 mysql的索引分为单列索引\(主键索引,唯索引,普通索引\)和组合索引.
@@ -16,7 +12,7 @@ select \* from users where area=’Beijing’ and age=22;
 
 * 如果我们是在area和age上分别创建单个索引的话，由于mysql查询每次只能使用一个索引，所以虽然这样已经相对不做索引时全表扫描提高了很多效率。
 
-* 如果我们创建了\(area, age, salary\)的复合索引，那么其实相当于创建了\(area,age,salary\)、\(area,age\)、\(area\)三个索引，这被称为最佳左前缀特性。  
+* 如果我们创建了\(area, age, salary\)的复合索引，那么其实相当于创建了\(area,age,salary\)、\(area,age\)、\(area\)三个索引，这被称为最左前缀特性。  
   因此我们在创建复合索引时应该将最常用作限制条件的列放在最左边，依次递减。
 
 * 只要列中包含有NULL值都将不会被包含在索引中，复合索引中只要有一列含有NULL值，那么这一列对于此复合索引就是无效的。所以我们在数据库设计时不要让字段的默认值为NULL。
