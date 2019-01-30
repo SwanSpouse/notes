@@ -1,5 +1,9 @@
 #### mysql 乐观锁、悲观锁
 
+
+![mysql lock](https://s2.ax1x.com/2019/01/30/klek5D.png)
+
+
 **乐观锁\(Optimistic Locking\): **指数据对被外界修改保持乐观态度。乐观锁不是数据库自带的，需要自己来进行实现。一般采用version记录机制。
 
 ```sql
