@@ -4,6 +4,12 @@
 
 可以使用docker pull 直接从Docker Hub镜像源来下载镜像。
 
+命令格式为：docker pull NAME\[:TAG\] 
+
+* 其中NAME 是镜像仓库的名称（用来区分镜像），TAG是镜像的标签（往往用来表示版本信息）
+* e.g. docker pull ubuntu:14.04
+* 如果不显式的指定TAG，则默认会选择latest标签，这个会下载最新版本的镜像。
+
 下载的过程中可以看出，镜像文件一般由若干层\(layer\)组成，6c953ac5d795这样串是层的唯一ID。使用Docker pull命令下载时会获取并输出镜像的各层信息。当不同的镜像包括相同的层时，本地仅存储层的一份内容，减小了需要的存储空间。
 
 docker pull ubuntu:14.04命令相当于docker pull registry.hub.docker.com/ubuntu:14.04 命令，即从默认的注册服务器Docker Hub Registry中的Ubuntu 仓库来下载标记为14.04的镜像。
@@ -42,8 +48,4 @@ docker run -it ubuntu:14.04 /bin/bash 其中-t选项让Docker分配一个伪终�
 docker从1.3.0版本提供了exec命令，可以在容器内直接执行任意命令。
 
 docker exec -it 243c32545da7 /bin/bash
-
-
-
-
 
