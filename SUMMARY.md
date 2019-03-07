@@ -13,6 +13,7 @@
     * [红黑树](shu-ju-jie-gou/shu/hong-hei-shu.md)
     * [B树&B+树](shu-ju-jie-gou/shu/b681126-b-shu.md)
 * [Linux](linux.md)
+  * [linux 系统信息相关命令](linux/linux-xi-tong-xin-xi-xiang-guan-ming-ling.md)
   * [Linux I/O模型](linux/linux-iomo-xing.md)
   * [I/O模型改进版](linux/iomo-xing-gai-jin-ban.md)
   * [vim](linux/vim.md)
@@ -21,7 +22,7 @@
   * [同步异步阻塞非阻塞](linux/tong-bu-yi-bu-zu-sai-fei-zu-sai.md)
   * [tail&more&less](linux/tail.md)
   * [/dev/null](linux/devnull.md)
-  * [crontab](linux/crontab.md)
+  * linux 系统信息相关命令
 * [Golang](go.md)
   * [Golang 语言基础](golang/golang-yu-yan-ji-chu.md)
     * [数据初始化 new & make](golang/new-object.md)

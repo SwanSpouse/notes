@@ -30,11 +30,13 @@ docker pull hub.c.163.com/public/ubuntu:14.04
 
 * 镜像大小：
 
-使用tag命令添加镜像标签
+**使用tag命令添加镜像标签**
 
 docker tag ubuntu:latest myubuntu:latest
 
+**使用inspect命令查看该镜像的详细信息**
 
+docker inspect ubuntu:14.04
 
 #### 查看镜像、搜寻镜像、删除镜像、创建镜像、存出和载入镜像、上传镜像
 
