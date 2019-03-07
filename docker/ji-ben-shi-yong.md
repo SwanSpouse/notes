@@ -4,7 +4,7 @@
 
 可以使用docker pull 直接从Docker Hub镜像源来下载镜像。
 
-命令格式为：docker pull NAME\[:TAG\] 
+命令格式为：docker pull NAME\[:TAG\]
 
 * 其中NAME 是镜像仓库的名称（用来区分镜像），TAG是镜像的标签（往往用来表示版本信息）
 * e.g. docker pull ubuntu:14.04
@@ -17,6 +17,24 @@ docker pull ubuntu:14.04命令相当于docker pull registry.hub.docker.com/ubunt
 如果从非官方的仓库下载，则需要在仓库名称前指定完整的仓库地址。例如从网易蜂巢的镜像源来下载ubuntu14.04镜像，可以使用如下命令。
 
 docker pull hub.c.163.com/public/ubuntu:14.04
+
+![](/assets/docker images.png)
+
+* REPOSITORY:  来自于哪个仓库，ubuntu仓库用来保存ubuntu系列的基础镜像。
+
+* 镜像的标签信息：比如14.04 、latest用来标注不同的版本信息，标签只是标记。并不能标识镜像内容。
+
+* IMAGE ID： 唯一识别标识。
+
+* 创建时间：镜像的最后更新时间。
+
+* 镜像大小：
+
+使用tag命令添加镜像标签
+
+docker tag ubuntu:latest myubuntu:latest
+
+
 
 #### 查看镜像、搜寻镜像、删除镜像、创建镜像、存出和载入镜像、上传镜像
 
