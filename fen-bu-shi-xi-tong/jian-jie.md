@@ -45,8 +45,6 @@ Elastcisearch 是分布式的 文档 存储。它能存储和检索复杂的数�
 
 ID和索引、类型组合，唯一确定当前的产品。
 
-
-
 Relational DB -&gt; Databases -&gt; Tables -&gt; Rows -&gt; Columns
 
 Elasticsearch -&gt; Indices   -&gt; Types  -&gt; Documents -&gt; Fields
@@ -69,25 +67,9 @@ POST /website/blog/1/\_update
 
 
 
+#### reference 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* https://www.elastic.co/guide/cn/elasticsearch/guide/current/\_Document\_Metadata.html\#\_id
 
 
 
