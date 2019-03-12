@@ -47,6 +47,7 @@ Splite Vote是因为如果同时有两个Candidate向大家邀票，这时通过
 
 * [https://www.jdon.com/artichect/raft.html](https://www.jdon.com/artichect/raft.html)
 * [https://raft.github.io/](https://raft.github.io/)
+* [http://thesecretlivesofdata.com/raft/](http://thesecretlivesofdata.com/raft/)
 
 
 
