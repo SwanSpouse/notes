@@ -145,6 +145,7 @@
   * ElasticSearch
     * [简介](fen-bu-shi-xi-tong/jian-jie.md)
     * [DSL 查询语句](fen-bu-shi-xi-tong/dsl-cha-xun-yu-ju.md)
+    * [数据类型](fen-bu-shi-xi-tong/shu-ju-lei-xing.md)
 * [设计模式](she-ji-mo-shi.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
