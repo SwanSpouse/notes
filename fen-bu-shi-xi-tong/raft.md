@@ -10,15 +10,11 @@
 * 选民Follower：类似选民，完全被动的角色，这样的服务器等待被通知投票。
 * 候选人Candidate：候选人就是在选举过程中提名自己的实体，一旦选举成功，则成为领导者。
 
-
-
-Raft协议中有两个timeout设置，
+**Raft协议中有两个timeout设置，**
 
 * 一个是election timeout，这个timeout的含义就是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
 
-
-
-Raft Leader选举过程：
+**Raft Leader选举过程：**
 
 1. 最开始的时候，所有的节点都处于Follower状态。
 2. 当一个节点进过election timeout的时间没有接收到来自Leader的心跳的时候，这个节点的状态会从Follower 切换成 Candidate，处于Candidate状态的节点会要求其它节点向其进行投票。（自己的票肯定是投给自己的）
@@ -26,11 +22,11 @@ Raft Leader选举过程：
 4. 当一个Candidate节点接收到大多数节点对自己的投票的时候，它就会从Candidate状态切换成Leader状态。
 5. Leader会向Follower同步自己的消息。
 
-Raft Leader重新选举过程：
+**Raft Leader重新选举过程：**
 
 如果两个Candidate节点在同一个任期内，同时参与竞选。且两者得票数相同。那么在当前任期则不会有Leader产生。等待election time的时间后，会进行下一个任期的竞选。
 
-Raft 日志同步（复制）过程：
+**Raft 日志同步（复制）过程：**
 
 1. 客户端向Leader发送写请求。
 2. Leader接收到请求之后会把数据写入log中，此时还处于uncommitted状态。
@@ -39,7 +35,7 @@ Raft 日志同步（复制）过程：
 5. Leader再告知当前的log entry已经commit。Follower节点会进行commit。
 6. 此时系统内部达成一致性。
 
-脑裂问题：
+**脑裂问题：**
 
 A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现在A B 两个节点、C D E三个节点割裂成2个网络。
 
@@ -51,9 +47,7 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 
 当两个网络又重新被打通的时候，由于C D E的任期序号要高于 A B网络，所以 A B 节点中的数据会进行回滚，同时从Leader中重新拉取数据，此时，集群节点的状态重新达到一致。
 
-
-
-Raft算法分为两个阶段：首先是选举过程，然后在选举出来的领导人带领下进行正常的操作，比如日志复制等。
+**Raft算法分为两个阶段：首先是选举过程，然后在选举出来的领导人带领下进行正常的操作，比如日志复制等。**
 
 * 1.任何一个服务器都可以成为一个Candidate，它向其他的服务器（Follower）发出要求选举自己的请求。
 * 2.其他服务器同意了，回复OK（同意）指令
