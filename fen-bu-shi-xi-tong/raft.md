@@ -21,11 +21,9 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 5. Leader再告知当前的log entry已经commit。Follower节点会进行commit。
 6. 此时系统内部达成一致性。
 
-
-
 **Raft Leader选举过程：**
 
-    **Raft election timeout: **这个timeout的含义是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
+**Raft election timeout: **这个timeout的含义是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
 
 1. 最开始的时候，所有的节点都处于Follower状态。
 2. 当一个节点进过election timeout的时间没有接收到来自Leader的心跳的时候，这个节点的状态会从Follower 切换成 Candidate，处于Candidate状态的节点会要求其它节点向其进行投票。（自己的票肯定是投给自己的）
