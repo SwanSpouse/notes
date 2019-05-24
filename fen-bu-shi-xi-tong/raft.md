@@ -12,8 +12,6 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 * 选民Follower：类似选民，完全被动的角色，这样的服务器等待被通知投票。
 * 候选人Candidate：候选人就是在选举过程中提名自己的实体，一旦选举成功，则成为领导者。
 
-
-
 **Raft 日志同步（复制）过程：**
 
 1. 客户端向Leader发送写请求。
@@ -25,13 +23,9 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 
 
 
-**Raft协议中有两个timeout设置，**
-
-* 一个是election timeout，这个timeout的含义就是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
-
-
-
 **Raft Leader选举过程：**
+
+    **Raft election timeout: **这个timeout的含义是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
 
 1. 最开始的时候，所有的节点都处于Follower状态。
 2. 当一个节点进过election timeout的时间没有接收到来自Leader的心跳的时候，这个节点的状态会从Follower 切换成 Candidate，处于Candidate状态的节点会要求其它节点向其进行投票。（自己的票肯定是投给自己的）
@@ -39,13 +33,9 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 4. 当一个Candidate节点接收到大多数节点对自己的投票的时候，它就会从Candidate状态切换成Leader状态。
 5. Leader会向Follower同步自己的消息。
 
-
-
 **Raft Leader重新选举过程：**
 
 如果两个Candidate节点在同一个任期内，同时参与竞选。且两者得票数相同。那么在当前任期则不会有Leader产生。等待election time的时间后，会进行下一个任期的竞选。
-
-
 
 **脑裂问题：**
 
