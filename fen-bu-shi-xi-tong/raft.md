@@ -35,6 +35,10 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 
 如果两个Candidate节点在同一个任期内，同时参与竞选。且两者得票数相同。那么在当前任期则不会有Leader产生。等待election time的时间后，会进行下一个任期的竞选。
 
+![](/assets/raft协议.png)
+
+Splite Vote是因为如果同时有两个Candidate向大家邀票，这时通过类似加时赛来解决，两个Candidate在一段timeout比如300ms互相不服气的等待以后，因为双方得到的票数是一样的，一半对一半，那么在300ms以后，再由这两个Candidate发出邀票，这时同时的概率大大降低，那么首先发出邀票的的Candidate得到了大多数同意，成为领导者Leader，而另外一个Candidate后来发出邀票时，那些Follower选民已经投票给第一个Candidate，不能再投票给它，它就成为落选者了，最后这个落选者也成为普通Follower一员了。
+
 **脑裂问题：**
 
 A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现在A B 两个节点、C D E三个节点割裂成2个网络。
@@ -58,11 +62,6 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 
 * 4.如果一旦这个Leader宕机崩溃了，那么Follower中会有一个成为Candidate，发出邀票选举，相当于再次执行1.2步骤。
 
-值得注意的是，整个选举过程是有一个时间限制的，如下图：
-
-![](/assets/raft协议.png)
-
-Splite Vote是因为如果同时有两个Candidate向大家邀票，这时通过类似加时赛来解决，两个Candidate在一段timeout比如300ms互相不服气的等待以后，因为双方得到的票数是一样的，一半对一半，那么在300ms以后，再由这两个Candidate发出邀票，这时同时的概率大大降低，那么首先发出邀票的的Candidate得到了大多数同意，成为领导者Leader，而另外一个Candidate后来发出邀票时，那些Follower选民已经投票给第一个Candidate，不能再投票给它，它就成为落选者了，最后这个落选者也成为普通Follower一员了。
 
 #### 日志复制
 
