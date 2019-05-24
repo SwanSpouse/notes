@@ -12,7 +12,7 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 * 选民Follower：类似选民，完全被动的角色，这样的服务器等待被通知投票。
 * 候选人Candidate：候选人就是在选举过程中提名自己的实体，一旦选举成功，则成为领导者。
 
-**Raft 日志同步（复制）过程：**
+### **Raft 日志同步（复制）过程：**
 
 1. 客户端向Leader发送写请求。
 2. Leader接收到请求之后会把数据写入log中，此时还处于uncommitted状态。
@@ -21,7 +21,7 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 5. Leader再告知当前的log entry已经commit。Follower节点会进行commit。
 6. 此时系统内部达成一致性。
 
-**Raft Leader选举过程：**
+### **Raft Leader选举过程：**
 
 **Raft election timeout: **这个timeout的含义是，当一个处于follower状态的节点等待这么长时间之后，它就会从Follower变成Candidate。各个节点的election timeout的时间是150ms - 300ms不等的随机数。
 
@@ -31,7 +31,7 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 4. 当一个Candidate节点接收到大多数节点对自己的投票的时候，它就会从Candidate状态切换成Leader状态。
 5. Leader会向Follower同步自己的消息。
 
-**Raft Leader重新选举过程：**
+### **Raft Leader重新选举过程：**
 
 如果两个Candidate节点在同一个任期内，同时参与竞选。且两者得票数相同。那么在当前任期则不会有Leader产生。等待election time的时间后，会进行下一个任期的竞选。
 
@@ -39,7 +39,7 @@ Raft是一个强Leader的共识算法，只有Leader能够处理客户端的请�
 
 Splite Vote是因为如果同时有两个Candidate向大家邀票，这时通过类似加时赛来解决，两个Candidate在一段timeout比如300ms互相不服气的等待以后，因为双方得到的票数是一样的，一半对一半，那么在300ms以后，再由这两个Candidate发出邀票，这时同时的概率大大降低，那么首先发出邀票的的Candidate得到了大多数同意，成为领导者Leader，而另外一个Candidate后来发出邀票时，那些Follower选民已经投票给第一个Candidate，不能再投票给它，它就成为落选者了，最后这个落选者也成为普通Follower一员了。
 
-**脑裂问题：**
+### **脑裂问题：**
 
 A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现在A B 两个节点、C D E三个节点割裂成2个网络。
 
@@ -51,7 +51,7 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 
 当两个网络又重新被打通的时候，由于C D E的任期序号要高于 A B网络，所以 A B 节点中的数据会进行回滚，同时从Leader中重新拉取数据，此时，集群节点的状态重新达到一致。
 
-#### 日志复制
+### 日志复制
 
 下面以日志复制为例子说明Raft算法：
 
@@ -67,7 +67,7 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 
 如果在这一过程中，发生了网络分区或者网络通信故障，使得Leader不能访问大多数Follwers了，那么Leader只能正常更新它能访问的那些Follower服务器，而大多数的服务器Follower因为没有了Leader，他们重新选举一个Candidate作为Leader，然后这个Leader作为代表于外界打交道，如果外界要求其添加新的日志，这个新的Leader就按上述步骤通知大多数Followers，如果这时网络故障修复了，那么原先的Leader就变成Follower，在失联阶段这个老Leader的任何更新都不能算commit，都回滚，接受新的Leader的新的更新。
 
-#### reference
+### reference
 
 * [https://www.jdon.com/artichect/raft.html](https://www.jdon.com/artichect/raft.html)
 * [https://raft.github.io/](https://raft.github.io/)
