@@ -62,7 +62,6 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 
 * 4.如果一旦这个Leader宕机崩溃了，那么Follower中会有一个成为Candidate，发出邀票选举，相当于再次执行1.2步骤。
 
-
 #### 日志复制
 
 下面以日志复制为例子说明Raft算法：
