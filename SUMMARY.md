@@ -69,6 +69,7 @@
   * [Mysql Bin Log](mysql/mysql-bin-log.md)
   * [数据库面试题](mysql/shu-ju-ku-mian-shi-ti.md)
   * [Mysql和InnoDB](mysql/mysqlhe-innodb.md)
+  * [SQL-CreateOrUpdate](mysql/sql-createorupdate.md)
 * [Java](java.md)
   * [Java基础](java/javaji-chu.md)
     * [线程的生命周期及状态转换](java/xian-cheng-de-sheng-ming-zhou-qi-ji-zhuang-tai-zhuan-huan.md)
