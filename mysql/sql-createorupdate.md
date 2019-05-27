@@ -24,6 +24,14 @@ insert into test values(null, 'unique', '654321') on duplicate key update col1 =
 　　REPLACE INTO users (id,name,age) VALUES(123, '赵本山', 50);
 ```
 
+#### 死锁问题
+
+reference: [https://blog.csdn.net/pml18710973036/article/details/78452688](https://blog.csdn.net/pml18710973036/article/details/78452688)![](/assets/createOrUpdate-deadlock.png)如上图所示，     insert ... on duplicate key 在执行时，innodb引擎会先判断插入的行是否产生重复key错误，如果存在，在对该现有的行加上S（共享锁）锁，如果返回该行数据给mysql,然后mysql执行完duplicate后的update操作，然后对该记录加上X（排他锁），最后进行update写入。    如果有两个事务并发的执行同样的语句，那么就会产生death lock。
+
+所以这个问题要怎么来解决，自己在一个事务里面实现CreateOrUpdate的操作吗？\(select xxx for udpate，还要在sql这里加上排他锁才行。\)
+
+**那这么说其实INSERT... ON DUPLICATE KEY UPDATE和 PRPLACE INTO 语句在并发情况下是不能使用的。**
+
 #### reference
 
 * [https://www.cnblogs.com/Dong-Ge/p/6518071.html](https://www.cnblogs.com/Dong-Ge/p/6518071.html)
