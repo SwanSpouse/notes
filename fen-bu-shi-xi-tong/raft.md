@@ -72,6 +72,7 @@ A B C D E 5个节点，假如当前B是Leader，其他的节点是Follower。现
 * [https://www.jdon.com/artichect/raft.html](https://www.jdon.com/artichect/raft.html)
 * [https://raft.github.io/](https://raft.github.io/)
 * [http://thesecretlivesofdata.com/raft/](http://thesecretlivesofdata.com/raft/)
+* [https://www.zhihu.com/question/54997169](https://www.zhihu.com/question/54997169) 这几个问题问题的非常好。
 
 
 
