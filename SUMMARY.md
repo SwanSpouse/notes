@@ -22,7 +22,7 @@
   * [同步异步阻塞非阻塞](linux/tong-bu-yi-bu-zu-sai-fei-zu-sai.md)
   * [tail&more&less](linux/tail.md)
   * [/dev/null](linux/devnull.md)
-  * linux 系统信息相关命令
+  * [linux 系统信息相关命令](linux/linux-xi-tong-xin-xi-xiang-guan-ming-ling.md)
 * [Golang](go.md)
   * [Golang 语言基础](golang/golang-yu-yan-ji-chu.md)
     * [数据初始化 new & make](golang/new-object.md)
