@@ -66,6 +66,7 @@
   * [基本使用](docker/ji-ben-shi-yong.md)
   * [Docker数据管理与端口映射](docker/dockershu-ju-guan-li.md)
   * [Dockerfile](docker/dockerfile.md)
+  * [kubernetes](docker/kubernetes.md)
 * [Mysql](mysql.md)
   * [InnoDB锁](mysql/innodbsuo.md)
   * [数据库索引](mysql/shu-ju-ku-suo-yin.md)
