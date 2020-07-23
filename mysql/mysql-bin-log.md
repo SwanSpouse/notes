@@ -1,4 +1,4 @@
-### Mysql Bin Log
+# Mysql Bin Log
 
 binlog有三种格式：Statement、Row以及Mixed。从安全性来看，STATEMENT（不推荐）、ROW（最安全）、MIXED（不推荐）。
 
@@ -32,9 +32,7 @@ ps:_新版本的MySQL中对row level模式也被做了优化，并不是所有�
 
 在Mixed模式下，一般的语句修改使用statment格式保存binlog，如一些函数，statement无法完成主从复制的操作，则采用row格式保存binlog，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志形式，也就是在Statement和Row之间选择一种。
 
-#### reference
+## reference
 
 * [https://www.cnblogs.com/kongzhongqijing/articles/7905051.html](https://www.cnblogs.com/kongzhongqijing/articles/7905051.html)
-
-
 

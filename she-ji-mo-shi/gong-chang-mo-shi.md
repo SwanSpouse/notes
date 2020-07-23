@@ -1,6 +1,6 @@
-### 工厂模式
+# 工厂模式
 
-#### **定义：**
+## **定义：**
 
 Define an interface for creating an object,but let subclasses decide which class to instantiate.Factory Method lets a class defer instantiation to subclasses.（定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到其子类。）
 
@@ -40,9 +40,7 @@ public class ConcreteCreator extends Creator {
 
 使用场景：jdbc连接数据库，硬件访问，降低对象的产生和销毁。
 
-#### 参考
+## 参考
 
 * [https://www.cnblogs.com/tongkey/p/7170826.html](https://www.cnblogs.com/tongkey/p/7170826.html)
-
-
 

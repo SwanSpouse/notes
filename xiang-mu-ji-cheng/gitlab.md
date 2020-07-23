@@ -1,4 +1,6 @@
-#### Gitlab webhook 应用
+# Gitlab
+
+## Gitlab webhook 应用
 
 通过master，release两个分支来保证代码的开发和发布。
 
@@ -7,7 +9,7 @@
 
 master和release两个分支可以解决master在进行内网测试，不能及时发布release的尴尬。
 
-#### merge-check
+## merge-check
 
 项目中添加了一个hook关联到jenkins的merge-check任务，当有新的mr打开时会执行merge-check：
 
@@ -19,15 +21,11 @@ master和release两个分支可以解决master在进行内网测试，不能及�
 
 当master代码在内网测试时，避免在合并到release前有新的代码并入master，可以预先打开一个master到release的mr从而锁住master分支。
 
-##### Git2Jira
+### Git2Jira
 
 起一个单独的项目git2jira。在gitlab上添加一个webhook任务，当有分支合并到master的时候，向git2jira发送一个请求，git2jira接受到请求之后，将本次合并到master分支的情况通过API调用评论到JIRA对应的issue下面。这样可以将gitlab和jira关联起来。在后续追溯问题的时候，也可以通过评论中的jira号来查看当时这样修改的原因。
 
-
-
-#### 参考
+## 参考
 
 * zhiwang-gitbook
-
-
 

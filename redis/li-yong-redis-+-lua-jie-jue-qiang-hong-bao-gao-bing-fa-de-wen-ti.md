@@ -1,4 +1,4 @@
-### 抢红包的需求分析
+# 利用redis + lua解决抢红包高并发的问题
 
 抢红包的场景有点像秒杀，但是要比秒杀简单点。
 
@@ -6,21 +6,15 @@
 
 另外像小米这样的抢购也要比淘宝的要简单，也是因为像小米这样是一个公司的，如果有少量没有抢到，则下次再抢，人工修复下数据是很简单的事。而像淘宝这么多商品，要是每一个都存在着修复数据的风险，那如果出故障了则很麻烦。
 
-
-
-淘宝的专家丁奇有个文章有写到淘宝是如何应对秒杀的：《秒杀场景下MySQL的低效–原因和改进》http://blog.nosqlfan.com/html/4209.html
-
-
+淘宝的专家丁奇有个文章有写到淘宝是如何应对秒杀的：《秒杀场景下MySQL的低效–原因和改进》[http://blog.nosqlfan.com/html/4209.html](http://blog.nosqlfan.com/html/4209.html)
 
 基于redis的抢红包方案
 
 下面介绍一种基于redis的抢红包方案。
 
-
-
 把原始的红包称为大红包，拆分后的红包称为小红包。
 
-1.小红包预先生成，插到数据库里，红包对应的用户ID是null。生成算法见另一篇blog：http://blog.csdn.net/hengyunabc/article/details/19177877
+1.小红包预先生成，插到数据库里，红包对应的用户ID是null。生成算法见另一篇blog：[http://blog.csdn.net/hengyunabc/article/details/19177877](http://blog.csdn.net/hengyunabc/article/details/19177877)
 
 2.每个大红包对应两个redis队列，一个是未消费红包队列，另一个是已消费红包队列。开始时，把未抢的小红包全放到未消费红包队列里。
 
@@ -39,7 +33,6 @@
 下面是在redis上执行的Lua脚本：
 
 ```lua
-
 -- 函数：尝试获得红包，如果成功，则返回json字符串，如果不成功，则返回空
 -- 参数：红包队列名， 已消费的队列名，去重的Map名，用户ID
 -- 返回值：nil 或者 json字符串，包含用户ID：userId，红包ID：id，红包金额：money
@@ -63,21 +56,17 @@ else
   end
 end
 return nil
-
-``` 
+```
 
 测试结果20个线程，每秒可以抢2.5万个，足以应付绝大部分的抢红包场景。
 
-
 如果是真的应付不了，拆分到几个redis集群里，或者改为批量抢红包，也足够应付。
 
-#### 总结：
+## 总结：
+
 redis的抢红包方案，虽然在极端情况下（即redis挂掉）会丢失一秒的数据，但是却是一个扩展性很强，足以应付高并发的抢红包方案。
 
+## reference
 
-#### reference
-
-* https://blog.csdn.net/hengyunabc/article/details/19433779 
-
-
+* [https://blog.csdn.net/hengyunabc/article/details/19433779](https://blog.csdn.net/hengyunabc/article/details/19433779) 
 

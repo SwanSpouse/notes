@@ -1,10 +1,12 @@
-### Happen-before
+# happen-before
+
+## Happen-before
 
 Java语言中有一个“先行发生”（happen—before）的规则，它是Java内存模型中定义的两项操作之间的偏序关系，如果操作A先行发生于操作B，其意思就是说，在发生操作B之前，操作A产生的影响都能被操作B观察到，“影响”包括修改了内存中共享变量的值、发送了消息、调用了方法等，它与时间上的先后发生基本没有太大关系。这个原则特别重要，它是判断数据是否存在竞争、线程是否安全的主要依据。
 
-#### java内存模型
+### java内存模型
 
-#### ![](/assets/java内存模型.png)
+### ![](../../.gitbook/assets/java内存模型.png)
 
 可以看出，工作内存是一个明显区别于顺序一致性内存模型的地方。事实上，造成可见性问题的根源之一，就在于这个工作内存（强调一下，包括缓存、写缓冲和寄存器等等）。工作内存使得每个线程都有了自己的私有存储，大部分时间对数据的存取工作都在这个区域完成。但是我们写一个数据，是直到数据写到主存中才算真正完成。实际上每个线程维护了一个**副本**，所有线程都在自己的工作内存中不断地读/写一个共享内存中的数据的副本。单线程情况下，这个副本不会造成任何问题；但一旦到多线程，有一个线程将变量写到主存，其他线程却不知道，其他线程的副本就都过期。比如，由于工作内存的存在，程序员写的一段代码，写一个普通的共享变量，其可能先被写到缓冲区，那指令完成的时间就被推迟了，实际表现也就是我们常说的“指令重排序”（这实际上是内存模型层面的重排序，重排序还可能是编译器、机器指令层级上的乱序）。
 
@@ -18,36 +20,35 @@ Java语言中有一个“先行发生”（happen—before）的规则，它是J
 
 所以要解决可见性问题，本质是要让线程对共享变量的修改，及时同步到其他线程。我们所使用的硬件架构下，不具备顺序一致性内存模型的全局一致的指令执行顺序，**讨论指令执行的时间先后并不存在意义或者说根本没办法确定时间上的先后**。
 
-#### happen-bofore的8条规则
+### happen-bofore的8条规则
 
-    下面是Java内存模型中的八条可保证happen—before的规则，它们无需任何同步器协助就已经存在，可以在编码中直接使用。如果两个操作之间的关系不在此列，并且无法从下列规则推导出来的话，它们就没有顺序性保障，虚拟机可以对它们进行随机地重排序。
+```text
+下面是Java内存模型中的八条可保证happen—before的规则，它们无需任何同步器协助就已经存在，可以在编码中直接使用。如果两个操作之间的关系不在此列，并且无法从下列规则推导出来的话，它们就没有顺序性保障，虚拟机可以对它们进行随机地重排序。
 
-    1、程序次序规则(Program Order Rule)：**在一个单独的线程中，**按照程序代码的执行流顺序，（时间上）先执行的操作happen—before（时间上）后执行的操作。
+1、程序次序规则(Program Order Rule)：**在一个单独的线程中，**按照程序代码的执行流顺序，（时间上）先执行的操作happen—before（时间上）后执行的操作。
 
-    2、管理锁定规则(Monitor Lock Rule)：一个unlock操作happen—before后面（时间上的先后顺序，下同）对同一个锁的lock操作。
+2、管理锁定规则(Monitor Lock Rule)：一个unlock操作happen—before后面（时间上的先后顺序，下同）对同一个锁的lock操作。
 
-    3、volatile变量规则(Volatile Variable Rule)：对一个volatile变量的写操作happen—before后面对该变量的读操作。
+3、volatile变量规则(Volatile Variable Rule)：对一个volatile变量的写操作happen—before后面对该变量的读操作。
 
-    4、线程启动规则(Thread Start Rule)：Thread对象的start（）方法happen—before此线程的每一个动作。
+4、线程启动规则(Thread Start Rule)：Thread对象的start（）方法happen—before此线程的每一个动作。
 
-    5、线程终止规则(Thread Termination Rule)：线程的所有操作都happen—before对此线程的终止检测，可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。
+5、线程终止规则(Thread Termination Rule)：线程的所有操作都happen—before对此线程的终止检测，可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。
 
-    6、线程中断规则(Thread Interruption Rule)：对线程interrupt（）方法的调用happen—before发生于被中断线程的代码检测到中断时事件的发生。
+6、线程中断规则(Thread Interruption Rule)：对线程interrupt（）方法的调用happen—before发生于被中断线程的代码检测到中断时事件的发生。
 
-    7、对象终结规则(Finalizer Rule)：一个对象的初始化完成（构造函数执行结束）happen—before它的finalize（）方法的开始。
+7、对象终结规则(Finalizer Rule)：一个对象的初始化完成（构造函数执行结束）happen—before它的finalize（）方法的开始。
 
-    8、传递性(Transitivity)：如果操作A happen—before操作B，操作B happen—before操作C，那么可以得出A happen—before操作C。  
+8、传递性(Transitivity)：如果操作A happen—before操作B，操作B happen—before操作C，那么可以得出A happen—before操作C。  
+```
 
-
-#### happen-bofore 规则的解释
+### happen-bofore 规则的解释
 
 一个操作时间上先发生于另一个操作“并不代表”一个操作happen—before另一个操作。
 
 一个操作happen—before另一个操作“并不代表”一个操作时间上先发生于另一个操作
 
-### reference
+## reference
 
 * [https://blog.csdn.net/zdxiq000/article/details/60874848](https://blog.csdn.net/zdxiq000/article/details/60874848) 
-
-
 

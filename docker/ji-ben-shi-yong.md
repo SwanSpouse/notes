@@ -1,6 +1,6 @@
-### Docker基本使用
+# 基本使用
 
-#### 获取镜像
+## 获取镜像
 
 可以使用docker pull 直接从Docker Hub镜像源来下载镜像。
 
@@ -18,16 +18,12 @@ docker pull ubuntu:14.04命令相当于docker pull registry.hub.docker.com/ubunt
 
 docker pull hub.c.163.com/public/ubuntu:14.04
 
-![](/assets/docker images.png)
+![](../.gitbook/assets/docker%20images.png)
 
-* REPOSITORY:  来自于哪个仓库，ubuntu仓库用来保存ubuntu系列的基础镜像。
-
+* REPOSITORY: 来自于哪个仓库，ubuntu仓库用来保存ubuntu系列的基础镜像。
 * 镜像的标签信息：比如14.04 、latest用来标注不同的版本信息，标签只是标记。并不能标识镜像内容。
-
 * IMAGE ID： 唯一识别标识。
-
 * 创建时间：镜像的最后更新时间。
-
 * 镜像大小：
 
 **使用tag命令添加镜像标签**
@@ -38,13 +34,13 @@ docker tag ubuntu:latest myubuntu:latest
 
 docker inspect ubuntu:14.04
 
-#### 查看镜像、搜寻镜像、删除镜像、创建镜像、存出和载入镜像、上传镜像
+## 查看镜像、搜寻镜像、删除镜像、创建镜像、存出和载入镜像、上传镜像
 
 相应的命令比较简单。用的时候再查就可以了。
 
 使用docker save和 docker load实现存出和载入。
 
-#### 启动容器
+## 启动容器
 
 使用docker create 来创建一个容器，创建出的新容器处于停止状态。
 
@@ -63,7 +59,7 @@ docker run 背后的操作:
 
 docker run -it ubuntu:14.04 /bin/bash 其中-t选项让Docker分配一个伪终端（psedo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开。
 
-#### 进入容器
+## 进入容器
 
 docker从1.3.0版本提供了exec命令，可以在容器内直接执行任意命令。
 

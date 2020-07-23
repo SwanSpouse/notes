@@ -1,4 +1,6 @@
-### 基础知识相关：
+# 学习计划
+
+## 基础知识相关：
 
 * 1 计算机网络相关的知识：
   * TCP IP 路由, DNS MAC 子网
@@ -22,7 +24,7 @@
 * pre4 数学知识：
   * 这里补充一下应该学习一些概率论和线性代数的知识。买了程序员数学。先看看这个。买了，还没看呢。
 
-### 程序设计语言相关：
+## 程序设计语言相关：
 
 * 4 程序语言：
   * 4.1 Golang
@@ -34,9 +36,9 @@
     * 逃逸分析
     * channel gorountine
   * 4.2 Java
-    * Java虚拟机，相关资料 (2018-08-09)
-      * https://blogs.oracle.com/poonam/understanding-cms-gc-logs
-      * https://blogs.oracle.com/poonam/understanding-g1-gc-logs
+    * Java虚拟机，相关资料 \(2018-08-09\)
+      * [https://blogs.oracle.com/poonam/understanding-cms-gc-logs](https://blogs.oracle.com/poonam/understanding-cms-gc-logs)
+      * [https://blogs.oracle.com/poonam/understanding-g1-gc-logs](https://blogs.oracle.com/poonam/understanding-g1-gc-logs)
     * Java类加载机制。这部分也算是Java虚拟机里面的。
     * Java中的设计模式。
     * Java源码相关。
@@ -50,7 +52,7 @@
   * 4.6 TODO
     * 这个留给新语言。
 
-### 算法相关：
+## 算法相关：
 
 * 5 算法：
   * 5.1 基础算法，这部分和数据结构有重叠。
@@ -58,7 +60,7 @@
   * 5.3 深度学习。应该了解这方面的知识。
   * 5.4 自然语言处理。复习一下概率学角度的自然语言处理。虽然已经过时了。但是还是有一些参考的意义。
 
-### 工程相关：
+## 工程相关：
 
 * 6 工具
   * Git Git的基本操作。
@@ -86,7 +88,7 @@
     * golang test
     * Selenium 操作浏览器进行测试。
 
-### 大数据相关：
+## 大数据相关：
 
 * 7 大数据相关
   * 7.1 了解相关的大数据框架、作用、进展、解决了什么问题。
@@ -113,14 +115,14 @@
   * 7.7 TiDB
     * 了解一下这个，这个项目的人都很牛，而且分享出来的文档质量都非常的高。
 
-### 设计模式：
+## 设计模式：
 
 * 8 设计模式
   * 熟悉相关的设计模式。
   * 编写一些简单的设计模式。画出设计模式的UML图。
   * 设计模式在各大开源项目中的应用。
 
-### 后台开发的基本知识：
+## 后台开发的基本知识：
 
 * 9 后台开发的基本知识
   * session, cookie的概念，使用，调试。debug问题。
@@ -131,7 +133,7 @@
   * 微服务、Nginx、Jenkins、Grafana等
   * 后台开发的基本工具。postman, 页面debug问题的方法。
 
-### 前端相关的知识了解：
+## 前端相关的知识了解：
 
 * 10 前端相关知识：
   * html css以及js， 和一些基本概念。比如说DOM树。
@@ -146,19 +148,17 @@
     * 文件上传、下载。流媒体的播放。mp3、视频播放。
     * 页面动态效果。
 
-### 了解一下现在比较有前景的业务点：
+## 了解一下现在比较有前景的业务点：
 
 * 区块链技术
 * 机器学习
 
-### 后记
+## 后记
 
 * 上面的每个点无先后顺序之分，只是想到了哪个就写哪个上去了。
 * 目前考虑到的只有这些，随着学习的进行我再不断的进行完善。
 
-### 参考
+## 参考
 
 * [https://github.com/jwasham/coding-interview-university/blob/master/translations/README-cn.md](https://github.com/jwasham/coding-interview-university/blob/master/translations/README-cn.md)
-
-
 

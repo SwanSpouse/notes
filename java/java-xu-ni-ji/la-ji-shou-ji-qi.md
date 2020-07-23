@@ -1,34 +1,34 @@
-### JVM 垃圾收集器
+# 垃圾收集器
 
-#### 概述
+### 概述
 
 上图展示了7种作用不同分代的垃圾收集器。如果两个收集器之间存在连线，就说明他们可以搭配使用。虚拟机所处的区域，则表示它是属于新生代收集器还是老年代收集器。
 
 没有最好的垃圾收集器，只有对具体应用最适合的收集器。
 
-#### HotSpot 虚拟机架构图
+### HotSpot 虚拟机架构图
 
-Eden : S0 : S1  = 8 : 1 : 1
+Eden : S0 : S1 = 8 : 1 : 1
 
 垃圾分代回收：
 
 * 新生代 ： 复制
 * 老年代 ： 标记-清除/ 整理
 
-#### Serial收集器
+### Serial收集器
 
 * 单线程收集器，在收集器必须暂停其他所有的工作线程，直到它收集结束。-- "Stop the World"
 * Serial收集器由于没有线程交互的开销，专心做垃圾收集自然可以获得最高的单线程收集效率。
 
-#### Serial Old收集器
+### Serial Old收集器
 
 Serial Old收集器是Serial收集器的老年代版本，是**一个单线程收集器，使用“标记--整理”算法。**
 
-#### ParNew 收集器
+### ParNew 收集器
 
 ParNew收集器其实就是Serial收集器的**多线程**版本。
 
-#### Parallel Scavenge 收集器 \( 吞吐量有限收集器）
+### Parallel Scavenge 收集器 \( 吞吐量有限收集器）
 
 Parallel Scavenge 收集器是一个新生代收集器，使用复制算法。
 
@@ -39,11 +39,11 @@ Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（Throug
 * -XX:MaxGCPauseMillis 最大垃圾收集停顿的时间
 * -XX:MaxGCTimeRatio 吞吐量大小
 
-#### Parallel Old 收集器
+### Parallel Old 收集器
 
 Parallel Old 收集器是 Parallel Scavenge收集器的老年代版本，使用**多线程和“标记--整理”算法。**
 
-#### CMS收集器\(Concurrent Mark Sweep\)
+### CMS收集器\(Concurrent Mark Sweep\)
 
 CMS收集器是一种以获取最短回收停顿时间为目标的收集器。
 
@@ -64,7 +64,7 @@ CMS收集器有以下缺点：
 * CMS收集器无法处理浮动垃圾\(Floating Garbage\)
 * CMS收集器基于“标记 -- 清除”算法实现的，容易产生碎片。
 
-#### G1 收集器\(Garbage First\)
+### G1 收集器\(Garbage First\)
 
 G1 收集器与其他GC收集器相比，具备如下特点：
 
@@ -89,7 +89,7 @@ G1收集器的运作大致可以划分为以下几个步骤：
 ## 垃圾收集器参数总结
 
 | 参数 | 参数描述 |
-| --- | --- |
+| :--- | :--- |
 | -XX:+UseSerialGC | Jvm运行在Client模式下的默认值，打开此开关后，使用Serial + Serial Old的收集器组合进行内存回收 |
 | -XX:+UseParNewGC | 打开此开关后，使用ParNew + Serial Old的收集器进行垃圾回收 |
 | -XX:+UseConcMarkSweepGC | 使用ParNew + CMS +  Serial Old的收集器组合进行内存回收，Serial Old作为CMS出现“Concurrent Mode Failure”失败后的后备收集器使用。 |
@@ -120,27 +120,26 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k
 
 ## 内存分配与回收策略
 
-#### 对象优先在Eden上分配
+### 对象优先在Eden上分配
 
 大多数情况下，新生对象在Eden上分配。当Eden区没有足够的空间进行分配时，虚拟机发生一次Minor GC。
 
 * 新生代GC \( Minor GC \)：指发生在新生代的垃圾收集动作，因为Java对象大多数具备朝生夕灭的特性，所以Minor GC 非常频繁，回收速度也比较快。
-
 * 老年代GC \( Major GC / Full GC\)：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC。 Major GC的速度一般会比 Minor GC慢10倍以上。
 
-#### 大对象直接进入老年代
+### 大对象直接进入老年代
 
 所谓大对象是指，需要大量连续内存空间的Java对象，最典型的大对象就是那种很长的字符串以及数组。虚拟机提供一个 -XX:PretenureSizeThreshold参数，令大于这个设置值的对象直接在老年代分配。这样做的目的是避免在Eden区以及两个Survivor区之间发生大量的内存复制。
 
-#### 长期存活的对象将进入老年代
+### 长期存活的对象将进入老年代
 
 每个对象有一个对象年龄计数器。如果对象在Eden出生并经过第一次Minor GC后仍然存活，并且能被Survivor容纳的话，将被移动到Survivor空间中，并且对象年龄设为1，对象在Survivor区每熬过一次Minor GC 年龄就增加1. 当年龄达到一定程度（默认15，可设置）就将会被晋升到老年代中。
 
-#### 动态年龄判定
+### 动态年龄判定
 
 为了更好的适应不同内存的情况。如果在Survivor空间中相同年龄的所有对象大小的总和大于Survivor空间的一半，年龄大于或者等于该年龄对象就可以直接进入老年代。
 
-#### 空间分配担保
+### 空间分配担保
 
 在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象的总控件。如果这个条件成立，那么Minor GC可以确保是安全的。如果不成立，则虚拟机会查看HandlePromotionFailure设置的值是否允许担保失败。如果允许，那么会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试一次Minor GC，尽管这次Minor GC是有风险的；如果小于，或者HandlePromotionFailure设置不允许冒险，那么这时也要进行一次Full GC。
 

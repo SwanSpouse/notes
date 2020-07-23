@@ -1,8 +1,8 @@
-### YARN
+# YARN
 
 YARN\(Yet Another Resource Negotiator,另一种资源协调者\)
 
-#### YARN的产生背景
+## YARN的产生背景
 
 Hadoop 1.0的弊端包括：
 
@@ -16,21 +16,19 @@ Hadoop 1.0的弊端包括：
 
 正是由于Hadoop 1.0存在以上这些弊端，所以Hadoop 2.0推出了资源管理器YARN，有效解决了上述问题。
 
-#### YARN基本结构
+## YARN基本结构
 
 YARN是Hadoop 2.0的资源管理器。它是一个通用的资源管理系统，可为上层应用提供统一的资源管理和调度，它的引入为集群在利用率、资源统一管理和数据共享等方面带来了巨大好处。
 
 YARN的基本设计思想是将Hadoop 1.0中的JobTracker拆分成了两个独立的服务。一个全局的资源管理器ResourceManager和每个应用程序特有的ApplicationMaster。其中ResourceManager负责整个系统的资源管理和分配，而ApplicationMaster负责单个应用程序的管理，其基本架构如下图所示：
 
-![](/assets/YARN.png)  
-
+![](../../.gitbook/assets/YARN.png)
 
 YARN总体上仍然是Master/Slave结构。在整个资源管理框架中，ResourceManager为Master，NodeManager为Slave，并通过HA方案实现了ResourceManager的高可用。ResourceManager负责对各个NodeManager上的资源进行统一管理和调度。当用户提交一个应用程序时，需要提供一个用以跟踪和管理这个程序的ApplicationMaster，它负责向ResourceManager申请资源，并要求NodeManger启动可以占用一定资源的任务。由于不同的ApplicationMaster被分布到不同的节点上，因此它们之间不会相互影响。
 
 **ResourceManager：**它是一个全局的资源管理器，负责整个系统的资源管理和分配，主要由**调度器**和**应用程序管理器**两个组件构成。
 
 * **调度器：**根据容量、队列等限制条件，将系统中的资源分配给各个正在运行的应用程序。调度器仅根据应用程序的资源需求进行资源分配，而资源分配单位用一个抽象概念“资源容器”（简称Container）表示，Container是一个动态资源分配单位，它将内存、CPU、磁盘、网络等资源封装在一起，从而限定每个任务使用的资源量。
-
 * **应用程序管理器：**负责管理整个系统中所有的应用程序，包括应用程序提交、与调度器协商资源以启动ApplicationMaster、监控ApplicationMaster运行状态并在失败时重新启动它等。
 
 ApplicationMaster：用户提交的每个应用程序均包含1个ApplicationMaster，主要功能包括与ResourceManager调度器协商以获取资源、将得到的任务进一步分配给内部的任务、与NodeManager通信以启动/停止任务、监控所有任务运行状态并在任务运行失败时重新为任务申请资源以重启任务等。
@@ -39,9 +37,9 @@ NodeManager：它是每个节点上的资源和任务管理器，它不仅定时
 
 Container：它是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当ApplicationMaster向ResourceManager申请资源时，返回的资源便是用Container表示的。YARN会为每个任务分配一个Container，且该任务只能使用该Container中描述的资源。
 
-#### YARN工作流
+## YARN工作流
 
-#### ![](/assets/YARN_workflow.png)
+## ![](../../.gitbook/assets/YARN_workflow.png)
 
 步骤1：用户向YARN中提交应用程序，其中包括用户程序、ApplicationMaster程序、ApplicationMaster启动命令等。
 
@@ -59,13 +57,7 @@ Container：它是YARN中的资源抽象，它封装了某个节点上的多维�
 
 步骤8：应用程序运行完成后，ApplicationMaster通过RPC协议向ResourceManager注销并关闭自己。
 
-#### reference 
+## reference
 
-* https://blog.csdn.net/carl810224/article/details/51910975
-
-
-
-
-
-
+* [https://blog.csdn.net/carl810224/article/details/51910975](https://blog.csdn.net/carl810224/article/details/51910975)
 

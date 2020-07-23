@@ -1,4 +1,4 @@
-### HDFS
+# HDFS
 
 HDFS是一个分布式文件系统，具有高容错的特点。它可以部署在廉价的通用硬件上，提供高吞吐率的数据访问，适合需要处理海量数据集的应用程序。
 
@@ -18,12 +18,7 @@ HDFS的构成：NameNode保存着HDFS的名字空间，对于任何对文件系�
 
 数据块：数据块是HDFS的文件存储处理单元，在Hadoop 2.0中默认大小为128MB，可根据业务情况进行配置。数据块的存在，使得HDFS可以保存比存储节点单一磁盘大的文件，而且简化了存储管理，方便容错，有利于数据复制。
 
-  
+## reference
 
-
-#### reference 
-
-*  https://blog.csdn.net/carl810224/article/details/51910975 
-
-
+* [https://blog.csdn.net/carl810224/article/details/51910975](https://blog.csdn.net/carl810224/article/details/51910975) 
 

@@ -1,39 +1,37 @@
-### 五种 unix io 模型
+# I/O模型改进版
 
 Unix系统将所有外部设备都看做是一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，返回一个file descriptor \(fd 文件描述符\)。
 
 在Unix系统中，I/O操作可以分为以下两个不同阶段：
 
 * 用户程序发起I/O请求。
-
 * 内核执行I/O请求。
 
 如果在上述操作的过程中:
 
 * 用户进程一直在等待（没有处理其他事情）称之为同步过程；反之为异步。
-
 * 用户程序调用I/O请求后，当资源不可用时，内核不能够立即返回，称之为阻塞。\(由于内核的原因阻塞了用户程序\)；反之为非阻塞
 
 通过两阶段状态的两两组合，可以得到四种模型：
 
 |  | Blocking | Non-Blocking |
-| --- | :---: | ---: |
+| :--- | :---: | ---: |
 | Synchronous | read/write | read/write\(O\_NONBLOK\) |
 | Asynchronous | io multiplexing\(select/poll\) | AIO |
 
-#### 同步阻塞
+## 同步阻塞
 
 用户进程调用API\(read, write\)会转化成一个I/O请求，一直等到I/O请求完成API调用才会完成。这意味着：在API调用期间用户程序是同步的；这个API调用会导致系统以阻塞的模式执行I/O，如果此时没有数据则一直等待（放弃CPU主动挂起--Sleep状态）
 
 ![BlockingIO](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/socket/BlockingIO.png?raw=true)
 
-#### 同步非阻塞
+## 同步非阻塞
 
 这种模式通过调用read,write的时候指定O\_NONBLOCK参数。和"同步阻塞"的区别在于系统调用的时候它是以非阻塞的方式执行的，无论是否有数据都会立即返回。
 
 ![Non-blockingIO](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/socket/Non-blockingIO.png?raw=true)
 
-#### 异步阻塞
+## 异步阻塞
 
 同步模型最主要的问题是占用CPU，阻塞I/O会主动让出CPU，但是用户空间的系统调用还是不会返回依然耗费CPU；
 
@@ -42,13 +40,10 @@ I/O函数是一样的。（都是read、write）唯一的区别在是异步模�
 
 常见的异步阻塞函数包括: select, poll, epoll。
 
-* 其中以select为例： 异步模式下我们的API调用分为两步，第一步是通过select订阅读写事件，这个函数会主动让出CPU直到事件发生（设置为Sleep状态，等待事件发生）；select一旦返回就证明可以开始读了，  
-    所以第二步是通过read读取数据（"读"必有数据）
+* 其中以select为例： 异步模式下我们的API调用分为两步，第一步是通过select订阅读写事件，这个函数会主动让出CPU直到事件发生（设置为Sleep状态，等待事件发生）；select一旦返回就证明可以开始读了， 所以第二步是通过read读取数据（"读"必有数据）
+* select/poll是顺序扫描fd是否就绪，而且支持的fd数量有限，因此它的使用受到了一些制约。Linux还提供了一个epoll系统调用，epoll使用基于时间驱动方式代替顺序扫描，因此性能更高。 当有fd就绪时，立即回调函数callback。
 
-* select/poll是顺序扫描fd是否就绪，而且支持的fd数量有限，因此它的使用受到了一些制约。Linux还提供了一个epoll系统调用，epoll使用基于时间驱动方式代替顺序扫描，因此性能更高。  
-  当有fd就绪时，立即回调函数callback。
-
-#### 异步阻塞之信号驱动
+## 异步阻塞之信号驱动
 
 完美主义者看了上面的select之后会有点不爽————我还要"等待"读写时间，能不能有读写事件的时候主动通知我呢？借助"信号"机制我们可以实现这个，但是这个并不完美而且有点儿弄巧成拙的意思。
 
@@ -59,7 +54,7 @@ I/O函数是一样的。（都是read、write）唯一的区别在是异步模�
 
 ![IOMultiplexing](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/socket/IOMultiplexing.png?raw=true)
 
-#### 异步非阻塞
+## 异步非阻塞
 
 ![AsynchronousIO](https://github.com/SwanSpouse/redis_go/blob/master/z_docs/socket/AsynchronousIO.png?raw=true)
 

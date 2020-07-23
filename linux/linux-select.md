@@ -1,14 +1,14 @@
-# Linux  select
+# linux select
 
 select系统调用的的用途是：在一段指定的时间内，监听用户感兴趣的文件描述符上可读、可写和异常等事件。
 
-```
+```text
 int iResult = recv(s, buffer,1024);
 ```
 
 这是用来接收数据的，在默认的阻塞模式下的套接字里，recv会阻塞在那里，直到套接字连接上有数据可读，把数据读到buffer里后recv函数才会返回，不然就会一直阻塞在那里。在单线程的程序里出现这种情况会导致主线程（单线程程序里只有一个默认的主线程）被阻塞,这样整个程序被锁死在这里，如果永远没数据发送过来，那么程序就会被永远锁死。这个问题可以用多线程解决，但是在有多个套接字连接的情况下，这不是一个好的选择，扩展性很差。
 
-```
+```text
 int iResult = ioctlsocket(s, FIOBIO, (unsigned long *)&ul);
 iResult = recv(s, buffer,1024);
 ```
@@ -18,13 +18,15 @@ iResult = recv(s, buffer,1024);
 看到这里很多人可能会说，那么就重复调用recv并检查返回值，直到成功为止，但是这样做效率很成问题，开销太大。
 
 select模型的出现就是为了解决上述问题。  
-select模型的关键是使用一种有序的方式，对多个套接字进行统一管理与调度 。![](/assets/linux select.png)
+select模型的关键是使用一种有序的方式，对多个套接字进行统一管理与调度 。
+
+![](../.gitbook/assets/linux%20select.png)
 
 如上所示，用户首先将需要进行IO操作的socket添加到select中，然后阻塞等待select系统调用返回。当数据到达时，socket被激活，select函数返回。用户线程正式发起read请求，读取数据并继续执行。
 
 从流程上来看，使用select函数进行IO请求和同步阻塞模型没有太大的区别，甚至还多了添加监视socket，以及调用select函数的额外操作，效率更差。**但是，使用select以后最大的优势是用户可以在一个线程内同时处理多个socket的IO请求。**用户可以注册多个socket，然后不断地调用select读取被激活的socket，即可达到在同一个线程内同时处理多个IO请求的目的。而在同步阻塞模型中，必须通过多线程的方式才能达到这个目的。
 
-```
+```text
 {
     select(socket);
     while(1) 
@@ -44,7 +46,7 @@ select模型的关键是使用一种有序的方式，对多个套接字进行�
 
 ## select相关API介绍与使用
 
-```
+```text
 #include <sys/select.h>
 #include <sys/time.h>
 #include <sys/types.h>
@@ -64,7 +66,7 @@ timeout:用于设置select函数的超时时间，即告诉内核select等待多
 
 #### 以下介绍与select函数相关的常见的几个宏：
 
-```
+```text
 int FD_ZERO(int fd, fd_set *fdset);   // 一个 fd_set类型变量的所有位都设为 0
 int FD_CLR(int fd, fd_set *fdset);    // 清除某个位时可以使用
 int FD_SET(int fd, fd_set *fd_set);   // 设置变量的某个位置位
@@ -75,7 +77,7 @@ int FD_ISSET(int fd, fd_set *fdset);  // 测试某个位是否被置位
 
 当声明了一个文件描述符集后，必须用FD\_ZERO将所有位置零。之后将我们所感兴趣的描述符所对应的位置位，操作如下：
 
-```
+```text
 fd_set rset;   
 int fd;   
 FD_ZERO(&rset);   
@@ -85,13 +87,13 @@ FD_SET(stdin, &rset);
 
 然后调用select函数，拥塞等待文件描述符事件的到来；如果超过设定的时间，则不再等待，继续往下执行。
 
-```
+```text
 select(fd+1, &rset, NULL, NULL, NULL);
 ```
 
 select返回后，用FD\_ISSET测试给定位是否置位：
 
-```
+```text
 if(FD_ISSET(fd, &rset)   
 { 
     ... 
@@ -101,7 +103,7 @@ if(FD_ISSET(fd, &rset)
 
 简单的使用select的🌰
 
-```
+```text
 #include <sys/select.h>
 #include <sys/time.h>
 #include <sys/types.h>
@@ -167,12 +169,10 @@ int main()
 **理解：描述一下select使用的这个流程**
 
 * 假设我要监听1、2、5 三个文件描述符的xx事件；分别调用 FD\_SET set进去；
-
 * 执行select 阻塞等待；
-
 * 当fd1 fd2 fd5其中有一个发生监听的事件发生的时候，则select 返回；这时候需要注意的是没有发生的事件会被清空。例如fd1 fd2发生了，fd5没有发生。那么fd\_set返回的就是0000,0011，1、2分别对应着上面的位置。上面说需要一个array进行记录的意思就是，如果我不记录着我注册了多少fd，那么当select返回的时候，我就丢失了未发生的事件。所以需要记录fd1 fd2 fd5，在处理事件之后，重新向select进行注册。
 
-## select总结： {#select总结：}
+## select总结： <a id="select&#x603B;&#x7ED3;&#xFF1A;"></a>
 
 select本质上是通过设置或者检查存放fd标志位的数据结构来进行下一步处理。这样所带来的缺点是：
 
@@ -181,6 +181,4 @@ select本质上是通过设置或者检查存放fd标志位的数据结构来进
 2、 对socket进行扫描时是线性扫描，即采用轮询的方法，效率较低：当套接字比较多的时候，每次select\(\)都要通过遍历FD\_SETSIZE个Socket来完成调度,不管哪个Socket是活跃的,都遍历一遍。这会浪费很多CPU时间。**如果能给套接字注册某个回调函数，当他们活跃时，自动完成相关操作，那就避免了轮询，这正是epoll与kqueue做的。**
 
 3、需要维护一个用来存放大量fd的数据结构，这样会使得用户空间和内核空间在传递该结构时复制开销大。
-
-
 
