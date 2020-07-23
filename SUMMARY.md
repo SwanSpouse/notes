@@ -113,6 +113,7 @@
   * [缓存穿透缓存雪崩](redis/huan-cun-chuan-tou-huan-cun-xue-beng.md)
   * [Redis Pipeline](redis/redis-pipeline.md)
   * [利用redis + lua解决抢红包高并发的问题](redis/li-yong-redis-+-lua-jie-jue-qiang-hong-bao-gao-bing-fa-de-wen-ti.md)
+  * [Redis 单线程模型](redis/redis-dan-xian-cheng-mo-xing.md)
 * [项目集成](xiang-mu-ji-cheng.md)
   * [SSO](xiang-mu-ji-cheng/sso.md)
   * [OAuth2](xiang-mu-ji-cheng/oauth2.md)
