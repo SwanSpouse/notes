@@ -86,13 +86,12 @@ FD_SET(stdin, &rset);
 然后调用select函数，拥塞等待文件描述符事件的到来；如果超过设定的时间，则不再等待，继续往下执行。
 
 ```
-select(fd+1, &rset, NULL, NULL,NULL);
+select(fd+1, &rset, NULL, NULL, NULL);
 ```
 
 select返回后，用FD\_ISSET测试给定位是否置位：
 
 ```
-
 if(FD_ISSET(fd, &rset)   
 { 
     ... 
@@ -111,37 +110,75 @@ if(FD_ISSET(fd, &rset)
 
 int main()
 {
-	fd_set rd;
-	struct timeval tv;
-	int err;
-	
+    fd_set rd;
+    struct timeval tv;
+    int err;
 
-	FD_ZERO(&rd);
-	FD_SET(0,&rd);
-	
-	tv.tv_sec = 5;
-	tv.tv_usec = 0;
-	err = select(1,&rd,NULL,NULL,&tv);
-	
-	if(err == 0) //超时
-	{
-		printf("select time out!\n");
-	}
-	else if(err == -1)  //失败
-	{
-		printf("fail to select!\n");
-	}
-	else  //成功
-	{
-		printf("data is available!\n");
-	}
 
-	
-	return 0;
+    FD_ZERO(&rd);
+    FD_SET(0,&rd);
+
+    tv.tv_sec = 5;
+    tv.tv_usec = 0;
+    err = select(1,&rd,NULL,NULL,&tv);
+
+    if(err == 0) //超时
+    {
+        printf("select time out!\n");
+    }
+    else if(err == -1)  //失败
+    {
+        printf("fail to select!\n");
+    }
+    else  //成功
+    {
+        printf("data is available!\n");
+    }
+
+
+    return 0;
 }
 ```
 
-这上面的 FD\_SET\(O, &rd\) 没有太理解是什么意思；
+这上面的 FD\_SET\(O, &rd\) 没有太理解是什么意思；  
+
+
+### 深入理解select 模型
+
+理解select模型的关键在于理解fd\_set,为说明方便，取fd\_set长度为1字节，fd\_set中的每一bit可以对应一个文件描述符fd。则1字节长的fd\_set最大可以对应8个fd。
+
+（1）执行fd\_set set; FD\_ZERO\(&set\); 则set用位表示是0000,0000。
+
+（2）若fd＝5,执行FD\_SET\(fd,&set\);后set变为0001,0000\(第5位置为1\)
+
+（3）若再加入fd＝2，fd=1,则set变为0001,0011
+
+（4）执行select\(6,&set,0,0,0\)阻塞等待
+
+（5）若fd=1,fd=2上都发生可读事件，则select返回，此时set变为0000,0011。注意：没有事件发生的fd=5被清空。  
+
+
+基于上面的讨论，可以轻松得出select模型的特点：
+
+（1）可监控的文件描述符个数取决与sizeof\(fd\_set\)的值。我这边服务器上sizeof\(fd\_set\)＝512，每bit表示一个文件描述符，则我服务器上支持的最大文件描述符是512\*8=4096。据说可调，另有说虽然可调，**但调整上限受于编译内核时的变量值。**
+
+（2）将fd加入select监控集的同时，还要再使用一个数据结构array保存放到select监控集中的fd，一是用于再select返回后，array作为源数据和fd\_set进行FD\_ISSET判断。二是select返回后会把以前加入的但并无事件发生的fd清空，则每次开始select前都要重新从array取得fd逐一加入（FD\_ZERO最先），扫描array的同时取得fd最大值maxfd，用于select的第一个参数。
+
+（3）可见select模型必须在select前循环加fd，取maxfd，**select返回后利用FD\_ISSET判断是否有事件发生。**
+
+理解：
+
+描述select
+
+
+
+
+
+
+
+
+
+
 
 
 
