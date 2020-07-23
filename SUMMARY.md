@@ -22,6 +22,7 @@
   * [同步异步阻塞非阻塞](linux/tong-bu-yi-bu-zu-sai-fei-zu-sai.md)
   * [tail&more&less](linux/tail.md)
   * [/dev/null](linux/devnull.md)
+  * [linux select](linux/linux-select.md)
   * [常用命令合集](linux/linux-xi-tong-xin-xi-xiang-guan-ming-ling/chang-yong-ming-ling-he-ji.md)
   * [linux 系统信息相关命令](linux/linux-xi-tong-xin-xi-xiang-guan-ming-ling.md)
 * [Golang](go.md)
