@@ -48,7 +48,7 @@ It’s not very frequent that CPU becomes your bottleneck with Redis, as usually
 
 Redis 在最新的几个版本中加入了一些可以被其他线程异步处理的删除操作，也就是我们在上面提到的`UNLINK`、`FLUSHALL ASYNC`和`FLUSHDB ASYNC`，我们为什么会需要这些删除操作，而它们为什么需要通过多线程的方式异步处理？
 
-####  删除操作
+#### 删除操作
 
 我们可以在 Redis 在中使用`DEL`命令来删除一个键对应的值，如果待删除的键值对占用了较小的内存空间，那么哪怕是**同步地**删除这些键值对也不会消耗太多的时间。
 
@@ -63,10 +63,6 @@ Redis 选择使用单线程模型处理客户端的请求主要还是因为 CPU 
 ### 参考
 
 * [https://draveness.me/whys-the-design-redis-single-thread/](https://draveness.me/whys-the-design-redis-single-thread/)
-
-  
-  
-
 
 
 
